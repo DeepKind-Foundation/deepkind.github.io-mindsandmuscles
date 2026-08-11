@@ -1,0 +1,54 @@
+---
+import { actions } from 'astro:actions';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import About from '../components/home/About.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import ClassTypes from '../components/home/ClassTypes.astro';
+import CtaBanner from '../components/home/CtaBanner.astro';
+import BlogTeaser from '../components/home/BlogTeaser.astro';
+import Newsletter from '../components/home/Newsletter.astro';
+import { reader, getAllPosts } from '../lib/reader';
+import { SITE_NAME, SITE_URL, buildOrganizationJsonLd } from '../lib/site';
+
+const [home, allPosts] = await Promise.all([reader.singletons.home.read(), getAllPosts()]);
+if (!home) throw new Error('Missing home page singleton');
+
+const latestPosts = allPosts
+  .sort((a, b) => b.entry.publishDate.localeCompare(a.entry.publishDate))
+  .slice(0, 3)
+  .map((post) => ({
+    slug: post.slug,
+    title: post.entry.title,
+    featuredImage: post.entry.featuredImage,
+    featuredImageAlt: post.entry.featuredImageAlt,
+  }));
+
+const newsletterResult = Astro.getActionResult(actions.subscribeNewsletter);
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      description: home.meta.description,
+      url: SITE_URL,
+    },
+    {
+      ...buildOrganizationJsonLd(),
+      slogan: home.hero.body,
+    },
+  ],
+};
+---
+
+<BaseLayout title={home.meta.title} description={home.meta.description} jsonLd={websiteJsonLd}>
+  <Hero {...home.hero} />
+  <About {...home.about} />
+  <HowItWorks {...home.howItWorks} />
+  <ClassTypes {...home.classTypes} />
+  <CtaBanner {...home.ctaBanner} />
+  <BlogTeaser {...home.blogTeaser} posts={latestPosts} />
+  <Newsletter {...home.newsletter} didSubscribe={Boolean(newsletterResult && !newsletterResult.error)} />
+</BaseLayout>

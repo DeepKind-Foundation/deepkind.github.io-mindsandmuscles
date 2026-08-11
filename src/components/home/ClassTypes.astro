@@ -1,0 +1,56 @@
+---
+interface ClassItem {
+  image: string;
+  alt: string;
+  body: string;
+}
+
+interface Props {
+  heading: string;
+  items: readonly ClassItem[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section id="rodzaje-zajec" class="class-types section">
+  <div class="container">
+    <h2>{heading}</h2>
+    <div class="class-types__grid">
+      {items.map((item) => (
+        <article class="class-types__item">
+          <img src={item.image} alt={item.alt} width="500" height="500" loading="lazy" />
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .class-types__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .class-types__item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+  }
+
+  .class-types__item p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .class-types__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

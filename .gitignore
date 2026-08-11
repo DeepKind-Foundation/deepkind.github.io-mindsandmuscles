@@ -6,3 +6,9 @@ dist/
 !.env.example
 .DS_Store
 *.log
+.idea/
+.vscode/*
+!.vscode/extensions.json
+test-results/
+playwright-report/
+blob-report/

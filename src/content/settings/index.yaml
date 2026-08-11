@@ -1,0 +1,37 @@
+logo: /images/site/logo.png
+nav:
+  - label: Home
+    href: /
+  - label: O Minds & Muscles
+    href: /#o-minds-and-muscles
+  - label: Jak to działa?
+    href: /#jak-to-dziala
+  - label: Rodzaje zajęć
+    href: /#rodzaje-zajec
+  - label: Strefa Wiedzy
+    href: /#strefa-wiedzy
+  - label: Kontakt
+    href: /kontakt/
+headerCta:
+  label: Zapisz się
+  href: 'https://forms.gle/GLeR22W6XC5JrNXe9'
+footer:
+  aboutText: >-
+    Równoległe zajęcia ruchowe dla dzieci i opiekunów. Bezpieczna przestrzeń
+    dla dziecka. Czas dla Ciebie.
+  linksHeading: Ważne linki
+  links:
+    - label: Home
+      href: /
+    - label: Strefa Wiedzy
+      href: /strefa-wiedzy-blog/
+    - label: Polityka prywatności
+      href: /polityka-prywatnosci/
+    - label: Polityka cookies
+      href: /polityka-cookies/
+  contactHeading: Bądźmy w kontakcie
+  phone: 696 483 349
+  email: kontakt@mindsmuscles.pl
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61588108561753'
+  instagramUrl: 'https://www.instagram.com/mind.s_and_muscle.s'
+  copyright: © 2026 Minds & Muscles | Projekt realizowany jest w ramach Fundacji DeepKind

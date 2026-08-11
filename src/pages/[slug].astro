@@ -1,0 +1,80 @@
+---
+import Markdoc from '@markdoc/markdoc';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { reader } from '../lib/reader';
+import { toAbsoluteUrl, buildOrganizationJsonLd } from '../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await reader.collections.posts.all();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { entry } = post;
+
+const content = await entry.content();
+const renderable = Markdoc.transform(content.node);
+const html = Markdoc.renderers.html(renderable);
+const title = entry.title;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: entry.description,
+  datePublished: entry.publishDate,
+  image: [toAbsoluteUrl(entry.featuredImage, Astro.site ?? Astro.url.origin)],
+  articleSection: entry.category,
+  publisher: buildOrganizationJsonLd(),
+};
+---
+
+<BaseLayout
+  title={`${title} — Minds and Muscles`}
+  description={entry.description}
+  ogImage={entry.featuredImage}
+  ogType="article"
+  jsonLd={articleJsonLd}
+>
+  <article class="post section">
+    <div class="container post__inner">
+      <span class="eyebrow">{entry.category}</span>
+      <h1>{title}</h1>
+      {entry.featuredImage && (
+        <img
+          src={entry.featuredImage}
+          alt={entry.featuredImageAlt}
+          width="1024"
+          height="576"
+          class="post__image"
+        />
+      )}
+      <div class="post__content" set:html={html} />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post__inner {
+    max-width: 720px;
+  }
+
+  .post__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    margin-block: var(--space-6) var(--space-8);
+    object-fit: cover;
+  }
+
+  .post__content :global(h2) {
+    margin-top: var(--space-12);
+  }
+
+  .post__content :global(p) {
+    color: var(--c-body);
+  }
+</style>

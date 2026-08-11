@@ -1,0 +1,104 @@
+---
+import { actions } from 'astro:actions';
+
+interface Props {
+  heading: string;
+  subheading: string;
+  submitLabel: string;
+  privacyPrefix: string;
+  privacyLinkLabel: string;
+  privacyLinkHref: string;
+  privacySuffix: string;
+  successMessage: string;
+  didSubscribe: boolean;
+}
+
+const {
+  heading,
+  subheading,
+  submitLabel,
+  privacyPrefix,
+  privacyLinkLabel,
+  privacyLinkHref,
+  privacySuffix,
+  successMessage,
+  didSubscribe,
+} = Astro.props;
+---
+
+<section class="newsletter section">
+  <div class="container newsletter__inner">
+    <h2>{heading}</h2>
+    <p class="newsletter__subheading">{subheading}</p>
+
+    {didSubscribe ? (
+      <p class="newsletter__success" role="status">{successMessage}</p>
+    ) : (
+      <form method="POST" action={actions.subscribeNewsletter} class="newsletter__form">
+        <label class="visually-hidden" for="newsletter-email">Adres email</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          required
+          placeholder="Adres email *"
+          aria-label="Adres email *"
+        />
+        <button type="submit" class="button button--primary">{submitLabel}</button>
+      </form>
+    )}
+
+    <p class="newsletter__privacy">
+      {privacyPrefix}<a href={privacyLinkHref}>{privacyLinkLabel}</a>{privacySuffix}
+    </p>
+  </div>
+</section>
+
+<style>
+  .newsletter {
+    background: var(--c-surface);
+    text-align: center;
+  }
+
+  .newsletter__inner {
+    max-width: 560px;
+  }
+
+  .newsletter__subheading {
+    color: var(--c-body);
+  }
+
+  .newsletter__form {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .newsletter__form input {
+    flex: 1;
+    min-height: var(--space-12);
+    padding-inline: var(--space-4);
+    border: 2px solid color-mix(in srgb, currentColor 15%, transparent);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+
+  .newsletter__success {
+    margin-top: var(--space-6);
+    font-weight: 600;
+    color: var(--c-primary);
+  }
+
+  .newsletter__privacy {
+    margin-top: var(--space-4);
+    font-size: 0.85rem;
+    color: var(--c-muted);
+  }
+
+  @media (max-width: 560px) {
+    .newsletter__form {
+      flex-direction: column;
+    }
+  }
+</style>

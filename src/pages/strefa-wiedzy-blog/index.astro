@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getAllPosts } from '../../lib/reader';
+
+const posts = await getAllPosts();
+const sortedPosts = posts.sort((a, b) => b.entry.publishDate.localeCompare(a.entry.publishDate));
+
+const title = 'Strefa Wiedzy — Minds and Muscles';
+const description =
+  'O ruchu, regulacji i codziennej trosce — dla dorosłych i dzieci. Artykuły, które pomagają lepiej rozumieć ciało, emocje i relacje.';
+---
+
+<BaseLayout title={title} description={description} ogImage={sortedPosts[0]?.entry.featuredImage}>
+  <section class="blog-index section">
+    <div class="container">
+      <header class="blog-index__header">
+        <h1>Strefa Wiedzy</h1>
+        <p>
+          O ruchu, regulacji i codziennej trosce — dla dorosłych i dzieci.<br />
+          Rzeczy, które pomagają lepiej rozumieć ciało, emocje i relacje.
+        </p>
+      </header>
+
+      <div class="blog-index__grid">
+        {sortedPosts.map((post) => (
+          <PostCard
+            slug={post.slug}
+            title={post.entry.title}
+            image={post.entry.featuredImage}
+            imageAlt={post.entry.featuredImageAlt}
+            category={post.entry.category}
+            description={post.entry.description}
+            linkLabel="Dowiedz się więcej →"
+            headingLevel="h2"
+            background="surface"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-index__header {
+    max-width: 640px;
+    margin-bottom: var(--space-12);
+  }
+
+  .blog-index__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (max-width: 860px) {
+    .blog-index__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
+---
+
+<section class="cta-banner section">
+  <div class="container cta-banner__inner">
+    <span class="eyebrow">{eyebrow}</span>
+    <h2>{heading}</h2>
+    <a href={buttonHref} class="button button--primary" target="_blank" rel="noopener noreferrer">
+      {buttonLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    background: var(--c-ink);
+  }
+
+  .cta-banner__inner {
+    text-align: center;
+    max-width: 620px;
+  }
+
+  .cta-banner .eyebrow {
+    color: var(--c-accent);
+  }
+
+  .cta-banner h2 {
+    color: var(--c-white);
+  }
+
+  .cta-banner .button {
+    margin-top: var(--space-6);
+  }
+</style>

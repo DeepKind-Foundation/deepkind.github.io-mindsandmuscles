@@ -1,0 +1,68 @@
+---
+interface Props {
+  image: string;
+  imageAlt: string;
+  quote: string;
+  quoteAttribution: string;
+  heading: string;
+  paragraphs: readonly string[];
+}
+
+const { image, imageAlt, quote, quoteAttribution, heading, paragraphs } = Astro.props;
+---
+
+<section id="o-minds-and-muscles" class="about section">
+  <div class="container about__grid">
+    <img src={image} alt={imageAlt} width="640" height="800" class="about__image" loading="lazy" />
+    <div class="about__content">
+      <blockquote class="about__quote">
+        <p>{quote}</p>
+        <cite>— {quoteAttribution}</cite>
+      </blockquote>
+      <h2>{heading}</h2>
+      {paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .about__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    object-fit: cover;
+  }
+
+  .about__quote {
+    margin: 0 0 var(--space-8);
+    padding-inline-start: var(--space-6);
+    border-inline-start: 4px solid var(--c-accent);
+  }
+
+  .about__quote p {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .about__quote cite {
+    font-style: normal;
+    color: var(--c-muted);
+  }
+
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
