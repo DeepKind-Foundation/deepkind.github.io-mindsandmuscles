@@ -1,5 +1,4 @@
 ---
-import { actions } from 'astro:actions';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import About from '../components/home/About.astro';
@@ -23,8 +22,6 @@ const latestPosts = allPosts
     featuredImage: post.entry.featuredImage,
     featuredImageAlt: post.entry.featuredImageAlt,
   }));
-
-const newsletterResult = Astro.getActionResult(actions.subscribeNewsletter);
 
 const websiteJsonLd = {
   '@context': 'https://schema.org',
@@ -50,5 +47,5 @@ const websiteJsonLd = {
   <ClassTypes {...home.classTypes} />
   <CtaBanner {...home.ctaBanner} />
   <BlogTeaser {...home.blogTeaser} posts={latestPosts} />
-  <Newsletter {...home.newsletter} didSubscribe={Boolean(newsletterResult && !newsletterResult.error)} />
+  <Newsletter {...home.newsletter} />
 </BaseLayout>

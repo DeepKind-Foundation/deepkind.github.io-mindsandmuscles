@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import keystatic from '@keystatic/astro';
-import node from '@astrojs/node';
 
 // https://astro.build/config
-// Pages stay statically prerendered by default; only the Keystatic admin
-// routes and the newsletter action opt into on-demand (server) rendering.
+// The Keystatic admin UI (/keystatic) injects on-demand routes that require
+// a server adapter. It's only needed for local content editing, so it's
+// excluded from production builds — content is edited locally, committed,
+// and pushed. Production output stays fully static.
 export default defineConfig({
-  integrations: [keystatic()],
-  adapter: node({ mode: 'standalone' }),
+  integrations: process.env.NODE_ENV === 'production' ? [] : [keystatic()],
 });
