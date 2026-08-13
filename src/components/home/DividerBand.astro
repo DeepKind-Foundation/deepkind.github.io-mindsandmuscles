@@ -1,0 +1,54 @@
+---
+interface Props {
+  variant: 'yellow' | 'striped';
+}
+
+const { variant } = Astro.props;
+---
+
+{variant === 'yellow' && <div class="divider-band divider-band--yellow" role="presentation" />}
+
+{variant === 'striped' && (
+  <div class="divider-band divider-band--striped" role="presentation">
+    <div class="divider-band__row">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div class={i % 2 === 0 ? 'divider-band__cell--primary' : 'divider-band__cell--accent'} />
+      ))}
+    </div>
+    <div class="divider-band__row">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div class={i % 2 === 0 ? 'divider-band__cell--accent' : 'divider-band__cell--primary'} />
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .divider-band--yellow {
+    height: 121px;
+    background: var(--c-yellow);
+  }
+
+  .divider-band--striped {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .divider-band__row {
+    display: flex;
+    height: 70px;
+  }
+
+  .divider-band__cell--primary,
+  .divider-band__cell--accent {
+    flex: 1;
+  }
+
+  .divider-band__cell--primary {
+    background: var(--c-primary);
+  }
+
+  .divider-band__cell--accent {
+    background: var(--c-accent-vivid);
+  }
+</style>

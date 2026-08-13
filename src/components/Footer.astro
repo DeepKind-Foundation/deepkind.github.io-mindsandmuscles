@@ -47,8 +47,8 @@ const { footer } = Astro.props.settings;
 
 <style>
   .site-footer {
-    background: var(--c-ink);
-    color: var(--c-surface);
+    background: var(--c-yellow);
+    color: var(--c-body);
     padding-block: var(--space-16) var(--space-8);
   }
 
@@ -59,22 +59,22 @@ const { footer } = Astro.props.settings;
   }
 
   .site-footer h2 {
-    color: var(--c-white);
+    color: var(--c-ink);
     font-size: 1.1rem;
     margin-bottom: var(--space-4);
   }
 
   .site-footer p {
-    color: color-mix(in srgb, var(--c-surface) 85%, transparent);
+    color: var(--c-body);
   }
 
   .site-footer a {
-    color: var(--c-surface);
+    color: var(--c-ink);
     text-decoration: none;
   }
 
   .site-footer a:hover {
-    color: var(--c-accent);
+    color: var(--c-primary-hover);
   }
 
   .site-footer__logo {
@@ -100,13 +100,13 @@ const { footer } = Astro.props.settings;
   .site-footer__bottom {
     margin-top: var(--space-16);
     padding-top: var(--space-6);
-    border-top: 1px solid color-mix(in srgb, var(--c-surface) 20%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--c-ink) 15%, transparent);
     font-size: 0.85rem;
   }
 
   .site-footer__bottom p {
     margin: 0;
-    color: color-mix(in srgb, var(--c-surface) 65%, transparent);
+    color: color-mix(in srgb, var(--c-body) 80%, transparent);
   }
 
   @media (max-width: 720px) {

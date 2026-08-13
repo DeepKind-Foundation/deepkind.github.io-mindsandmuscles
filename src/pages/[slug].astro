@@ -40,26 +40,39 @@ const articleJsonLd = {
   jsonLd={articleJsonLd}
 >
   <article class="post section">
-    <div class="container post__inner">
-      <span class="eyebrow">{entry.category}</span>
-      <h1>{title}</h1>
-      {entry.featuredImage && (
-        <img
-          src={entry.featuredImage}
-          alt={entry.featuredImageAlt}
-          width="1024"
-          height="576"
-          class="post__image"
-        />
-      )}
-      <div class="post__content" set:html={html} />
+    <div class="container">
+      <div class="post__card">
+        <span class="eyebrow">{entry.category}</span>
+        <h1>{title}</h1>
+        {entry.featuredImage && (
+          <img
+            src={entry.featuredImage}
+            alt={entry.featuredImageAlt}
+            width="1024"
+            height="576"
+            class="post__image"
+          />
+        )}
+        <div class="post__content" set:html={html} />
+      </div>
     </div>
   </article>
 </BaseLayout>
 
 <style>
-  .post__inner {
-    max-width: 720px;
+  .post {
+    background: var(--c-surface);
+  }
+
+  .post__card {
+    background: var(--c-white);
+    border-radius: var(--radius);
+    padding: var(--space-12) var(--space-8);
+  }
+
+  .post__card h1 {
+    font-size: clamp(2rem, 2.5vw + 1rem, 2.75rem);
+    line-height: 1.2;
   }
 
   .post__image {
@@ -76,5 +89,11 @@ const articleJsonLd = {
 
   .post__content :global(p) {
     color: var(--c-body);
+  }
+
+  @media (max-width: 640px) {
+    .post__card {
+      padding: var(--space-8) var(--space-6);
+    }
   }
 </style>

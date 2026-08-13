@@ -119,9 +119,10 @@ export default config({
                 validation: { isRequired: true },
               }),
               alt: fields.text({ label: 'Alt text' }),
+              label: fields.text({ label: 'Category label (e.g. "RUCH I ODDECH")' }),
               body: fields.text({ label: 'Body', multiline: true }),
             }),
-            { label: 'Class types', itemLabel: (props) => props.fields.alt.value }
+            { label: 'Class types', itemLabel: (props) => props.fields.label.value }
           ),
         }, { label: 'Class types ("Rodzaje zajęć")' }),
 

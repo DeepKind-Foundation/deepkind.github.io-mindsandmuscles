@@ -15,8 +15,14 @@
   --c-primary: oklch(56.8% 0.157 277.7); /* was #6369d1 — brand indigo */
   --c-primary-hover: oklch(52% 0.174 276.2); /* was #5258ca */
   --c-accent: oklch(81.2% 0.104 190.6); /* was #66d7d1 — teal */
+  --c-accent-vivid: oklch(78.8% 0.133 194.2); /* was #12d4d3 — striped-divider teal */
   --c-surface: oklch(96.5% 0.009 279.7); /* was #f2f3fa — light lavender */
   --c-white: oklch(100% 0 0);
+
+  /* Footer + decorative-divider yellow — set per-widget-area in the legacy
+     site, not part of the Astra global color palette, so it wasn't caught
+     by the first extraction pass. */
+  --c-yellow: oklch(88.7% 0.148 90.3); /* was #ffd558 */
 
   --font-heading: 'Mulish', sans-serif;
   --font-body: 'Montserrat', sans-serif;
@@ -82,8 +88,8 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw + 1rem, 6rem);
-  line-height: 1.15;
+  font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+  line-height: 1.2;
 }
 
 h2 {

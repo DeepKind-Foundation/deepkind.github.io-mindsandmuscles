@@ -50,12 +50,15 @@ classTypes:
   items:
     - image: /images/home/class-type-1.jpg
       alt: "Two women practicing partner yoga pose together on a yoga mat indoors, promoting fitness and mindfulness."
+      label: "RUCH I ODDECH"
       body: "Zajęcia ruchowe inspirowane jogą i pilatesem. Łączą spokojną pracę z ciałem, oddech i wzmacnianie mięśni głębokich, pomagając odzyskać lekkość, stabilność i spokój. Pracujemy w łagodnym tempie, z szacunkiem do możliwości każdego ciała."
     - image: /images/home/class-type-2.jpg
       alt: "Young girl practicing balance exercises with a blue yoga ball indoors on a mat."
+      label: "AKTYWNA PRZYGODA"
       body: "Ogólnorozwojowe zajęcia ruchowe dla dzieci, oparte na zabawie, ruchu i naturalnej potrzebie eksplorowania świata. Każde spotkanie to połączenie ćwiczeń, gier i wyzwań, które rozwijają sprawność, koordynację i pewność siebie."
     - image: /images/home/class-type-3.jpg
       alt: "Two individuals flexing their muscles with purple dumbbells"
+      label: "MOBILNOŚĆ I SIŁA"
       body: "Ogólnorozwojowe zajęcia ruchowe dla dorosłych, łączące pracę nad zakresem ruchu, stabilnością i siłą funkcjonalną. Ćwiczymy tak, by ciało było sprawne, odporne i gotowe na codzienne wyzwania. Zajęcia mają dynamiczny, ale bezpieczny charakter."
 
 ctaBanner:
