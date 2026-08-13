@@ -59,4 +59,17 @@ test.describe('Navigation', () => {
       expect(response.status(), `${href} should not 404`).toBeLessThan(400);
     }
   });
+
+  test('footer policy links resolve, not 404', async ({ page, request }) => {
+    await page.goto('/');
+    const hrefs = await page.locator('.site-footer a[href^="/polityka"]').evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href')).filter((href): href is string => Boolean(href))
+    );
+    expect(hrefs.length).toBeGreaterThan(0);
+
+    for (const href of hrefs) {
+      const response = await request.get(href);
+      expect(response.status(), `${href} should not 404`).toBeLessThan(400);
+    }
+  });
 });
