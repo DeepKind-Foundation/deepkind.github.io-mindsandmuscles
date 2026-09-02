@@ -1,0 +1,98 @@
+---
+interface Step {
+  label: string;
+  body: string;
+}
+
+interface ImageItem {
+  image: string;
+  alt: string;
+}
+
+interface Props {
+  heading: string;
+  subheading: string;
+  steps: readonly Step[];
+  images: readonly ImageItem[];
+}
+
+const { heading, subheading, steps, images } = Astro.props;
+---
+
+<section id="jak-to-dziala" class="how-it-works section section--surface">
+  <div class="container">
+    <header class="how-it-works__header">
+      <h2>{heading}</h2>
+      <p class="eyebrow">{subheading}</p>
+    </header>
+
+    <ol class="how-it-works__steps">
+      {steps.map((step) => (
+        <li>
+          <h3>{step.label}</h3>
+          <p>{step.body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="how-it-works__gallery">
+      {images.map((img) => (
+        <img src={img.image} alt={img.alt} width="400" height="300" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works__header {
+    max-width: 640px;
+    margin-bottom: var(--space-12);
+  }
+
+  .how-it-works__steps {
+    list-style: none;
+    margin: 0 0 var(--space-16);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    counter-reset: step;
+  }
+
+  .how-it-works__steps li {
+    background: var(--c-white);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+  }
+
+  .how-it-works__steps h3 {
+    font-size: 1rem;
+    color: var(--c-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .how-it-works__steps p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .how-it-works__gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .how-it-works__gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  @media (max-width: 960px) {
+    .how-it-works__steps,
+    .how-it-works__gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

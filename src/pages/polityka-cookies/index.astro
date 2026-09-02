@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Polityka cookies — Minds and Muscles"
+  description="Zasady używania plików cookies na stronie internetowej Minds & Muscles."
+  noindex={true}
+>
+  <section class="policy section">
+    <div class="container policy__inner">
+      <p class="policy__meta">Data obowiązywania: 02.09.2026 · Wersja: 1.0</p>
+      <h1>Polityka cookies</h1>
+
+      <div class="policy__content">
+        <section class="policy__section">
+          <h2>1. Informacje ogólne</h2>
+          <p>
+            Niniejsza Polityka Cookies określa zasady używania plików cookies i podobnych technologii na
+            stronie internetowej Minds & Muscles, prowadzonej w ramach Fundacji DeepKind, ul. Odolańska
+            3/15, 02-560 Warszawa.
+          </p>
+        </section>
+
+        <section class="policy__section">
+          <h2>2. Czym są pliki cookies?</h2>
+          <p>
+            Cookies to niewielkie pliki tekstowe zapisywane na urządzeniu użytkownika podczas korzystania
+            ze strony internetowej. Mogą być odczytywane przez serwer przy kolejnych odwiedzinach.
+          </p>
+          <p>Cookies <strong>nie służą</strong> identyfikowaniu konkretnej osoby.</p>
+        </section>
+
+        <section class="policy__section">
+          <h2>3. Jakich plików cookies obecnie używamy</h2>
+          <div class="policy__card">
+            <p>
+              Ta strona jest stroną statyczną i <strong>obecnie nie wykorzystuje plików cookies</strong>
+              analitycznych, marketingowych ani śledzących. Nie umieszczamy na stronie pikseli
+              reklamowych ani narzędzi remarketingowych.
+            </p>
+          </div>
+          <p>
+            Jeżeli w przyszłości wdrożymy narzędzia wymagające zgody na cookies (np. analitykę odwiedzin),
+            poinformujemy o tym w zaktualizowanej wersji niniejszej Polityki i poprosimy o zgodę przed ich
+            uruchomieniem, zgodnie z obowiązującymi przepisami.
+          </p>
+        </section>
+
+        <section class="policy__section">
+          <h2>4. Zapisy na zajęcia — formularz zewnętrzny</h2>
+          <p>
+            Przycisk „Zapisz się" przenosi na zewnętrzny formularz Google Forms, znajdujący się poza tą
+            stroną i poza naszą kontrolą. Google może na swojej domenie stosować własne pliki cookies,
+            zgodnie z <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">polityką prywatności Google</a>.
+          </p>
+        </section>
+
+        <section class="policy__section">
+          <h2>5. Czcionki i pozostałe zasoby strony</h2>
+          <p>
+            Czcionki wykorzystywane na stronie są hostowane lokalnie, razem z resztą strony — nie
+            korzystamy z Google Fonts ani innych zewnętrznych czcionek, które mogłyby zapisywać pliki
+            cookies podczas ich wczytywania.
+          </p>
+        </section>
+
+        <section class="policy__section">
+          <h2>6. Logi serwera</h2>
+          <p>Dostawca hostingu strony może zbierać standardowe logi serwera, takie jak:</p>
+          <ul>
+            <li>adres IP urządzenia,</li>
+            <li>data i czas odwiedzin,</li>
+            <li>informacje o przeglądarce,</li>
+            <li>informacje o błędach serwera.</li>
+          </ul>
+          <p>Logi te nie umożliwiają identyfikacji użytkownika i służą wyłącznie zapewnieniu bezpieczeństwa i stabilności serwisu.</p>
+        </section>
+
+        <section class="policy__section">
+          <h2>7. Zarządzanie plikami cookies w przeglądarce</h2>
+          <p>Nawet jeśli strona obecnie nie ustawia własnych cookies, użytkownik może w każdej chwili zablokować lub usunąć pliki cookies zapisane przez inne strony w ustawieniach przeglądarki:</p>
+          <ul class="policy__browser-list">
+            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a></li>
+            <li><a href="https://support.mozilla.org/pl/kb/ciasteczka" target="_blank" rel="noopener noreferrer">Firefox</a></li>
+            <li><a href="https://support.apple.com/pl-pl/guide/safari/sfri11471" target="_blank" rel="noopener noreferrer">Safari</a></li>
+            <li><a href="https://support.microsoft.com/help/4027947" target="_blank" rel="noopener noreferrer">Edge</a></li>
+          </ul>
+        </section>
+
+        <section class="policy__section">
+          <h2>8. Zmiany w Polityce Cookies</h2>
+          <p>Możemy aktualizować niniejszą Politykę. Aktualna wersja będzie publikowana na tej stronie.</p>
+        </section>
+
+        <section class="policy__section">
+          <h2>9. Kontakt</h2>
+          <p>
+            W sprawach dotyczących tej Polityki prosimy o kontakt:
+            <a href="mailto:rodo@deepkind.org">rodo@deepkind.org</a> lub
+            <a href="mailto:kontakt@mindsmuscles.pl">kontakt@mindsmuscles.pl</a>.
+          </p>
+        </section>
+      </div>
+
+      <p class="policy__back"><a href="/">← Wróć na stronę główną</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy__inner {
+    max-width: 72ch;
+  }
+
+  .policy__meta {
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: var(--c-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .policy__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    margin-top: var(--space-8);
+  }
+
+  .policy__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .policy__section h2 {
+    font-size: 1.375rem;
+  }
+
+  .policy__section p,
+  .policy__section li {
+    color: var(--c-body);
+  }
+
+  .policy__section ul {
+    padding-left: var(--space-6);
+    margin: 0 0 var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .policy__card {
+    padding: var(--space-4) var(--space-6);
+    background: var(--c-surface);
+    border-radius: var(--radius);
+  }
+
+  .policy__card p {
+    margin: 0;
+  }
+
+  .policy__browser-list {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: var(--space-3) !important;
+    padding-left: 0 !important;
+    list-style: none;
+  }
+
+  .policy__browser-list a {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: var(--c-primary);
+    text-decoration: none;
+    border: 2px solid var(--c-surface);
+    border-radius: 999px;
+    padding: var(--space-2) var(--space-4);
+    transition: border-color 0.15s ease;
+  }
+
+  .policy__browser-list a:hover {
+    border-color: var(--c-primary);
+  }
+
+  .policy__back {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 2px solid var(--c-surface);
+  }
+</style>

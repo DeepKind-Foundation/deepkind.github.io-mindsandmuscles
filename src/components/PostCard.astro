@@ -1,0 +1,83 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+  linkLabel: string;
+  category?: string;
+  description?: string;
+  headingLevel?: 'h2' | 'h3';
+  background?: 'white' | 'surface';
+}
+
+const {
+  slug,
+  title,
+  image,
+  imageAlt,
+  linkLabel,
+  category,
+  description,
+  headingLevel = 'h3',
+  background = 'white',
+} = Astro.props;
+const Heading = headingLevel;
+---
+
+<a href={`/${slug}/`} class:list={['post-card', `post-card--${background}`]}>
+  <img src={image} alt={imageAlt} width="300" height="169" loading="lazy" />
+  <div class="post-card__body">
+    {category && <span class="eyebrow">{category}</span>}
+    <Heading>{title}</Heading>
+    {description && <p>{description}</p>}
+    <span class="post-card__link">{linkLabel}</span>
+  </div>
+</a>
+
+<style>
+  .post-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .post-card--white {
+    background: var(--c-white);
+  }
+
+  .post-card--surface {
+    background: var(--c-surface);
+  }
+
+  .post-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .post-card__body {
+    padding: var(--space-6);
+  }
+
+  .post-card__body h2,
+  .post-card__body h3 {
+    font-size: 1.15rem;
+    margin: var(--space-2) 0 var(--space-3);
+  }
+
+  .post-card__body p {
+    font-size: 0.95rem;
+    color: var(--c-body);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-card__link {
+    display: block;
+    color: var(--c-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+</style>

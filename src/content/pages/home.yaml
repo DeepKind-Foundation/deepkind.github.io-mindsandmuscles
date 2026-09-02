@@ -1,0 +1,84 @@
+meta:
+  title: "Minds and Muscles — Ruch dla ciała. Spokój dla głowy. Czas dla każdego."
+  description: "Ruch dla ciała, spokój dla głowy, czas dla każdego. Równoległe zajęcia dla dzieci i rodziców — zaprojektowane tak, by każdy dostał to, czego potrzebuje."
+
+hero:
+  eyebrow: "WITAMY w MINDS & MUSCLES"
+  heading: "Ruch dla ciała. Spokój dla głowy. Czas dla każdego."
+  body: "Równoległe zajęcia dla dzieci i rodziców — zaprojektowane tak, by każdy dostał to, czego potrzebuje."
+  primaryCtaLabel: "ZGŁOŚ ZAINTERESOWANIE"
+  primaryCtaHref: "https://forms.gle/GLeR22W6XC5JrNXe9"
+  secondaryCtaLabel: "Dowiedz się więcej"
+  secondaryCtaHref: "/#o-minds-and-muscles"
+
+about:
+  image: /images/home/about.webp
+  imageAlt: "Stay Safe Be Kind text carved on stone in green park during coronavirus pandemic"
+  quote: "Prawie wszystko zaczyna działać znowu, jeśli odłączysz to na kilka minut. Włącznie z Tobą 😉"
+  quoteAttribution: "Anne Lamott"
+  heading: "Czym jest Minds & Muscles?"
+  paragraphs:
+    - "Żyjemy w świecie, w którym bardzo łatwo poczuć, że ciągle mamy za mało czasu. Za mało, by naprawdę uważnie być z dziećmi. Za mało, by zadbać o siebie — o swoje ciało, głowę, oddech. Za mało, by pielęgnować relacje i budować wokół siebie wspierającą społeczność. Brakuje nam też przestrzeni, by na chwilę zwolnić. By pobyć offline. Bez powiadomień, bez presji, bez listy rzeczy, którymi „powinniśmy się zająć”. My też to znamy. Jesteśmy rodzicami, którzy chcą dbać o swoje dzieci — o ich rozwój, bezpieczeństwo i radość. Chcemy spędzać z nimi czas i być naprawdę obecni. A jednocześnie — jak wielu innych rodziców — czasem czujemy, że sami znikamy z tego równania."
+    - "Minds & Muscles powstało właśnie z tego miejsca. Stworzyliśmy je, bo nie chcieliśmy już wybierać: albo moje dziecko – albo ja, albo ruch – albo spokój, albo czas razem – albo czas dla siebie."
+    - "W Minds & Muscles wierzymy, że te potrzeby nie muszą się wykluczać. Że dzieci mogą być bezpieczne, aktywne i zaopiekowane, a dorośli — w tym samym czasie — mogą zadbać o swoje ciało, głowę i energię."
+    - "To przestrzeń zaprojektowana przez rodziców dla rodziców. Z uważnością, prostotą i szacunkiem do tego, jak naprawdę wygląda codzienne życie."
+
+howItWorks:
+  heading: "Jak to działa"
+  subheading: "Prosto. Równolegle. Bez stresu."
+  steps:
+    - label: "Krok 1 – Zaczynacie razem"
+      body: "Zanim zacznie się trening, jest wspólna droga. Krótki spacer, rozmowa, chwila ciszy albo śmiech po drodze. To pierwszy moment, w którym zwalniacie i jesteście razem. Zajęcia zaczynają się jeszcze przed wejściem na salę."
+    - label: "Krok 2 – Przestrzeń dla dziecka"
+      body: "Dziecko trafia na zajęcia ruchowe dopasowane do jego wieku i potrzeb. Jest ruch, zabawa, rozwijanie sprawności i poczucie bezpieczeństwa. Ćwiczymy w małych grupach, w dobrej atmosferze, pod uważną opieką trenerów. Dziecko jest w ruchu, zaopiekowane i po prostu… dobrze się bawi."
+    - label: "Krok 3 – Czas dla dorosłego"
+      body: "W tym samym czasie Ty masz swój moment. Zajęcia ruchowe, oddech, rozluźnienie ciała i głowy. Bez patrzenia na zegarek. Bez poczucia winy. Z pełnym spokojem, że dziecko jest zaopiekowane. To czas, który naprawdę działa."
+    - label: "Krok 4 – Wspólna przestrzeń"
+      body: "Po zajęciach spotykamy się w części wspólnej. Herbata, rozmowy, kontakt z innymi dorosłymi i swobodna zabawa dzieci. Czasem także warsztaty i wydarzenia specjalne. Bo Minds & Muscles to nie tylko trening — tutaj relacje nie kończą się wraz z ostatnim ćwiczeniem 🙂"
+  images:
+    - image: /images/home/how-it-works-1.webp
+      alt: "A joyful family walking together outdoors, holding hands in a playful and happy moment."
+    - image: /images/home/how-it-works-2.jpg
+      alt: "Two women, parents practicing yoga in a bright indoor space, focusing on fitness and mindfulness."
+    - image: /images/home/how-it-works-3.webp
+      alt: "Happy diverse children playing with colorful balls indoors, showcasing fun and friendship."
+    - image: /images/home/how-it-works-4.jpg
+      alt: "Friends sharing tea together, relaxed and smiling, representing the community that forms around Minds & Muscles."
+
+classTypes:
+  heading: "Rodzaje zajęć"
+  items:
+    - image: /images/home/class-type-1.jpg
+      alt: "Two women practicing partner yoga pose together on a yoga mat indoors, promoting fitness and mindfulness."
+      label: "RUCH I ODDECH"
+      body: "Zajęcia ruchowe inspirowane jogą i pilatesem. Łączą spokojną pracę z ciałem, oddech i wzmacnianie mięśni głębokich, pomagając odzyskać lekkość, stabilność i spokój. Pracujemy w łagodnym tempie, z szacunkiem do możliwości każdego ciała."
+    - image: /images/home/class-type-2.jpg
+      alt: "Young girl practicing balance exercises with a blue yoga ball indoors on a mat."
+      label: "AKTYWNA PRZYGODA"
+      body: "Ogólnorozwojowe zajęcia ruchowe dla dzieci, oparte na zabawie, ruchu i naturalnej potrzebie eksplorowania świata. Każde spotkanie to połączenie ćwiczeń, gier i wyzwań, które rozwijają sprawność, koordynację i pewność siebie."
+    - image: /images/home/class-type-3.jpg
+      alt: "Two individuals flexing their muscles with purple dumbbells"
+      label: "MOBILNOŚĆ I SIŁA"
+      body: "Ogólnorozwojowe zajęcia ruchowe dla dorosłych, łączące pracę nad zakresem ruchu, stabilnością i siłą funkcjonalną. Ćwiczymy tak, by ciało było sprawne, odporne i gotowe na codzienne wyzwania. Zajęcia mają dynamiczny, ale bezpieczny charakter."
+
+ctaBanner:
+  eyebrow: "Ruch, który daje przestrzeń"
+  heading: "Totalna troska, która nie wymaga wyboru."
+  buttonLabel: "ZAPISZ SIĘ"
+  buttonHref: "https://forms.gle/GLeR22W6XC5JrNXe9"
+
+blogTeaser:
+  heading: "Strefa wiedzy"
+  intro: "O ruchu, regulacji i codziennej trosce — dla dorosłych i dzieci. Rzeczy, które pomagają lepiej rozumieć ciało, emocje i relacje."
+  buttonLabel: "Przejdź do Bloga"
+  buttonHref: "/strefa-wiedzy-blog/"
+
+newsletter:
+  heading: "Zapisz się do newslettera"
+  subheading: "Bądź na bieżąco z tym, jak wspieramy ciało i głowę."
+  submitLabel: "Zaczynamy!"
+  privacyPrefix: "Obiecujemy, że nigdy nie będziemy spamować! Zapoznaj się z naszą "
+  privacyLinkLabel: "Polityką prywatności"
+  privacyLinkHref: "/polityka-prywatnosci/"
+  privacySuffix: ", aby uzyskać więcej informacji."
+  successMessage: "Sprawdź swoją skrzynkę odbiorczą albo katalog spam i potwierdź swoją subskrypcję."
