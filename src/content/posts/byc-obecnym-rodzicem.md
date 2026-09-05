@@ -2,6 +2,7 @@
 title: "Obecność w epoce rozproszenia"
 description: "Bycie obecnym rodzicem to nie kwestia silnej woli. Co badania nad wypaleniem rodzicielskim mówią o jakości czasu z dzieckiem — i jak pomaga w tym ruch."
 category: "Relacje"
+author: "Joanna Lisiecka"
 publishDate: "2026-02-02"
 featuredImage: /images/posts/obecnosc-w-epoce-rozproszenia.jpg
 featuredImageAlt: "Rodzic w spokojnej chwili obecności z dzieckiem, symbol uważności w codziennym życiu"
