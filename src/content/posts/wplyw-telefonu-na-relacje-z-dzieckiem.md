@@ -1,7 +1,8 @@
 ---
 title: "Technoferencja: jak telefon zakłóca relację rodzica z dzieckiem"
-description: "Rodzice ze wzrokiem w telefonie tracą średnio co czwartą minutę czasu z dzieckiem. Czym jest technoferencja, jak wpływa na dziecko i na nas samych — i co z tym zrobić."
+description: "Rodzice ze wzrokiem w telefonie tracą średnio co czwartą minutę czasu z dzieckiem. Czym jest technoferencja i jak wpływa na dziecko oraz na nas samych."
 category: "Relacje"
+author: "Joanna Lisiecka"
 publishDate: "2026-02-02"
 featuredImage: /images/posts/technoferencja.jpg
 featuredImageAlt: "Rodzic trzymający telefon obok dziecka bawiącego się klockami — symbol technoferencji"

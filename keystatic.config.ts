@@ -164,6 +164,7 @@ export default config({
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({ label: 'Meta description', multiline: true }),
         category: fields.text({ label: 'Category' }),
+        author: fields.text({ label: 'Author', validation: { isRequired: true } }),
         publishDate: fields.date({ label: 'Publish date', validation: { isRequired: true } }),
         featuredImage: fields.image({
           label: 'Featured image',

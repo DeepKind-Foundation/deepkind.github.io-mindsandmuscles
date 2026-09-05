@@ -11,8 +11,13 @@ import Newsletter from '../components/home/Newsletter.astro';
 import { reader, getAllPosts } from '../lib/reader';
 import { SITE_NAME, SITE_URL, buildOrganizationJsonLd } from '../lib/site';
 
-const [home, allPosts] = await Promise.all([reader.singletons.home.read(), getAllPosts()]);
+const [home, allPosts, settings] = await Promise.all([
+  reader.singletons.home.read(),
+  getAllPosts(),
+  reader.singletons.settings.read(),
+]);
 if (!home) throw new Error('Missing home page singleton');
+if (!settings) throw new Error('Missing site settings singleton');
 
 const latestPosts = allPosts
   .sort((a, b) => b.entry.publishDate.localeCompare(a.entry.publishDate))
@@ -34,7 +39,10 @@ const websiteJsonLd = {
       url: SITE_URL,
     },
     {
-      ...buildOrganizationJsonLd(),
+      ...buildOrganizationJsonLd({
+        logo: settings.logo,
+        sameAs: [settings.footer.facebookUrl, settings.footer.instagramUrl].filter(Boolean),
+      }),
       slogan: home.hero.body,
     },
   ],

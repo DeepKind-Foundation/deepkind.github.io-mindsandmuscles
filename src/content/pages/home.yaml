@@ -1,5 +1,5 @@
 meta:
-  title: "Minds and Muscles — Ruch dla ciała. Spokój dla głowy. Czas dla każdego."
+  title: "Ruch dla ciała. Spokój dla głowy. Czas dla każdego."
   description: "Ruch dla ciała, spokój dla głowy, czas dla każdego. Równoległe zajęcia dla dzieci i rodziców — zaprojektowane tak, by każdy dostał to, czego potrzebuje."
 
 hero:
@@ -13,7 +13,7 @@ hero:
 
 about:
   image: /images/home/about.webp
-  imageAlt: "Stay Safe Be Kind text carved on stone in green park during coronavirus pandemic"
+  imageAlt: "Pomalowany kamień z napisem „Stay Safe Be Kind” leżący na skale, na tle zieleni ogrodu"
   quote: "Prawie wszystko zaczyna działać znowu, jeśli odłączysz to na kilka minut. Włącznie z Tobą 😉"
   quoteAttribution: "Anne Lamott"
   heading: "Czym jest Minds & Muscles?"
@@ -37,27 +37,27 @@ howItWorks:
       body: "Po zajęciach spotykamy się w części wspólnej. Herbata, rozmowy, kontakt z innymi dorosłymi i swobodna zabawa dzieci. Czasem także warsztaty i wydarzenia specjalne. Bo Minds & Muscles to nie tylko trening — tutaj relacje nie kończą się wraz z ostatnim ćwiczeniem 🙂"
   images:
     - image: /images/home/how-it-works-1.webp
-      alt: "A joyful family walking together outdoors, holding hands in a playful and happy moment."
+      alt: "Rodzina spacerująca razem na zewnątrz, trzymając się za ręce, w radosnym, wspólnym momencie"
     - image: /images/home/how-it-works-2.jpg
-      alt: "Two women, parents practicing yoga in a bright indoor space, focusing on fitness and mindfulness."
+      alt: "Dwie kobiety, rodzice, ćwiczące jogę w jasnej sali, skupione na ruchu i oddechu"
     - image: /images/home/how-it-works-3.webp
-      alt: "Happy diverse children playing with colorful balls indoors, showcasing fun and friendship."
+      alt: "Uśmiechnięte dzieci bawiące się kolorowymi piłkami w sali, pełne energii i radości"
     - image: /images/home/how-it-works-4.jpg
-      alt: "Friends sharing tea together, relaxed and smiling, representing the community that forms around Minds & Muscles."
+      alt: "Osoby pijące razem herbatę, rozluźnione i uśmiechnięte — wspólnota, która tworzy się wokół Minds & Muscles"
 
 classTypes:
   heading: "Rodzaje zajęć"
   items:
     - image: /images/home/class-type-1.jpg
-      alt: "Two women practicing partner yoga pose together on a yoga mat indoors, promoting fitness and mindfulness."
+      alt: "Dwie kobiety wykonujące wspólną pozycję jogi na macie, w spokojnym rytmie oddechu i ruchu"
       label: "RUCH I ODDECH"
       body: "Zajęcia ruchowe inspirowane jogą i pilatesem. Łączą spokojną pracę z ciałem, oddech i wzmacnianie mięśni głębokich, pomagając odzyskać lekkość, stabilność i spokój. Pracujemy w łagodnym tempie, z szacunkiem do możliwości każdego ciała."
     - image: /images/home/class-type-2.jpg
-      alt: "Young girl practicing balance exercises with a blue yoga ball indoors on a mat."
+      alt: "Dziewczynka ćwicząca równowagę na niebieskiej piłce gimnastycznej na macie"
       label: "AKTYWNA PRZYGODA"
       body: "Ogólnorozwojowe zajęcia ruchowe dla dzieci, oparte na zabawie, ruchu i naturalnej potrzebie eksplorowania świata. Każde spotkanie to połączenie ćwiczeń, gier i wyzwań, które rozwijają sprawność, koordynację i pewność siebie."
     - image: /images/home/class-type-3.jpg
-      alt: "Two individuals flexing their muscles with purple dumbbells"
+      alt: "Dwie osoby ćwiczące z fioletowymi hantlami, pokazujące napięte mięśnie"
       label: "MOBILNOŚĆ I SIŁA"
       body: "Ogólnorozwojowe zajęcia ruchowe dla dorosłych, łączące pracę nad zakresem ruchu, stabilnością i siłą funkcjonalną. Ćwiczymy tak, by ciało było sprawne, odporne i gotowe na codzienne wyzwania. Zajęcia mają dynamiczny, ale bezpieczny charakter."
 

@@ -2,6 +2,7 @@
 title: "Dlaczego wybieranie między sobą a dzieckiem to fałszywy dylemat"
 description: "Rodzice, którzy rezygnują z ruchu na rzecz dziecka, tracą więcej niż myślą. Dlaczego \"ja albo dziecko\" to fałszywy wybór i jak wygląda opieka równoległa."
 category: "Relacje"
+author: "Joanna Lisiecka"
 publishDate: "2026-02-07"
 featuredImage: /images/posts/wybieranie-miedzy-soba-a-dzieckiem.jpg
 featuredImageAlt: "Rodzic i dziecko trzymający się za ręce w parku — symbol wyboru między czasem dla siebie a czasem z dzieckiem"
