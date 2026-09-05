@@ -1,6 +1,6 @@
 ---
 title: "Obecność w epoce rozproszenia"
-description: "Bycie obecnym rodzicem to nie kwestia silnej woli. Co badania nad wypaleniem rodzicielskim mówią o jakości czasu z dzieckiem — i jak ruch pomaga wrócić do siebie."
+description: "Bycie obecnym rodzicem to nie kwestia silnej woli. Co badania nad wypaleniem rodzicielskim mówią o jakości czasu z dzieckiem — i jak pomaga w tym ruch."
 category: "Relacje"
 publishDate: "2026-02-02"
 featuredImage: /images/posts/obecnosc-w-epoce-rozproszenia.jpg
