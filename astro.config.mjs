@@ -8,5 +8,6 @@ import keystatic from '@keystatic/astro';
 // excluded from production builds — content is edited locally, committed,
 // and pushed. Production output stays fully static.
 export default defineConfig({
+  site: 'https://mindsandmuscles.pl',
   integrations: process.env.NODE_ENV === 'production' ? [] : [keystatic()],
 });
