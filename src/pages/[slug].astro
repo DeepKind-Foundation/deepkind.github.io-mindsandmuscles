@@ -15,7 +15,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { entry } = post;
 
-const content = await entry.content();
+const [content, settings] = await Promise.all([entry.content(), reader.singletons.settings.read()]);
+if (!settings) throw new Error('Missing site settings singleton');
 const renderable = Markdoc.transform(content.node);
 const html = Markdoc.renderers.html(renderable);
 const title = entry.title;
@@ -28,7 +29,10 @@ const articleJsonLd = {
   datePublished: entry.publishDate,
   image: [toAbsoluteUrl(entry.featuredImage, Astro.site ?? Astro.url.origin)],
   articleSection: entry.category,
-  publisher: buildOrganizationJsonLd(),
+  publisher: buildOrganizationJsonLd({
+    logo: settings.logo,
+    sameAs: [settings.footer.facebookUrl, settings.footer.instagramUrl].filter(Boolean),
+  }),
 };
 ---
 
