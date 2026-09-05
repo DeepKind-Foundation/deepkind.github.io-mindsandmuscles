@@ -7,14 +7,27 @@ interface Props {
   primaryCtaHref: string;
   secondaryCtaLabel: string;
   secondaryCtaHref: string;
+  illustration: string;
+  illustrationMobile: string;
+  illustrationAlt: string;
 }
 
-const { eyebrow, heading, body, primaryCtaLabel, primaryCtaHref, secondaryCtaLabel, secondaryCtaHref } =
-  Astro.props;
+const {
+  eyebrow,
+  heading,
+  body,
+  primaryCtaLabel,
+  primaryCtaHref,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  illustration,
+  illustrationMobile,
+  illustrationAlt,
+} = Astro.props;
 ---
 
 <section id="home" class="hero section">
-  <div class="container">
+  <div class="container hero__grid">
     <div class="hero__inner">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{heading}</h1>
@@ -26,6 +39,10 @@ const { eyebrow, heading, body, primaryCtaLabel, primaryCtaHref, secondaryCtaLab
         <a href={secondaryCtaHref} class="hero__link">{secondaryCtaLabel} →</a>
       </div>
     </div>
+    <picture class="hero__illustration">
+      <source media="(max-width: 720px)" srcset={illustrationMobile} />
+      <img src={illustration} alt={illustrationAlt} width="900" height="672" loading="eager" fetchpriority="high" />
+    </picture>
   </div>
 </section>
 
@@ -38,8 +55,37 @@ const { eyebrow, heading, body, primaryCtaLabel, primaryCtaHref, secondaryCtaLab
     background: linear-gradient(180deg, var(--c-surface), var(--c-white));
   }
 
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
   .hero__inner {
     max-width: 820px;
+  }
+
+  .hero__illustration {
+    display: block;
+    justify-self: center;
+  }
+
+  .hero__illustration img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+
+  @media (max-width: 720px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__illustration img {
+      max-width: 200px;
+    }
   }
 
   @media (max-width: 640px) {

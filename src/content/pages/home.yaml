@@ -10,6 +10,9 @@ hero:
   primaryCtaHref: "https://forms.gle/GLeR22W6XC5JrNXe9"
   secondaryCtaLabel: "Dowiedz się więcej"
   secondaryCtaHref: "/#o-minds-and-muscles"
+  illustration: /images/home/hero-illustration.webp
+  illustrationMobile: /images/home/hero-illustration-mobile.webp
+  illustrationAlt: "Rysunek jedną linią przedstawiający dorosłych i dzieci podczas ruchu — jogi, biegania i zabawy"
 
 about:
   image: /images/home/about.webp
