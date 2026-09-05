@@ -69,6 +69,8 @@ const headingLines = heading.split('\n');
   .hero__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* Row 1's third column is deliberately empty — the illustration (row 2) is
+       rotated and overflows upward into it. Not a layout bug. */
     grid-template-areas:
       'heading heading heading'
       'lower illustration illustration';
@@ -96,8 +98,50 @@ const headingLines = heading.split('\n');
     height: auto;
     margin-inline-start: auto;
     align-self: end;
-    opacity: 0.55;
-    transform: rotate(-3deg);
+    /* Muted so the illustration reads as a secondary accent, not the focal
+       point — kept as a custom property (with --illustration-rotation below)
+       so the entry animation can end at these exact values instead of the
+       keyframe's own end-state silently overriding them. */
+    --illustration-opacity: 0.55;
+    --illustration-rotation: -3deg;
+    opacity: var(--illustration-opacity);
+    transform: rotate(var(--illustration-rotation));
+  }
+
+  /* Entry reveal, staggered heading -> body/CTA -> illustration (reading order).
+     Opacity and rotation are folded into the keyframe itself (via the custom
+     properties, defaulting to fully-opaque/0deg for the non-illustration
+     elements) so they survive past the animation's fill-mode instead of being
+     wiped by the animated opacity/transform. */
+  @keyframes hero-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(12px) rotate(var(--illustration-rotation, 0deg));
+    }
+    to {
+      opacity: var(--illustration-opacity, 1);
+      transform: translateY(0) rotate(var(--illustration-rotation, 0deg));
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__heading,
+    .hero__lower,
+    .hero__illustration {
+      animation: hero-reveal 0.4s ease both;
+    }
+
+    .hero__heading {
+      animation-delay: 0ms;
+    }
+
+    .hero__lower {
+      animation-delay: 100ms;
+    }
+
+    .hero__illustration {
+      animation-delay: 200ms;
+    }
   }
 
   @media (max-width: 640px) {
@@ -115,7 +159,8 @@ const headingLines = heading.split('\n');
 
     .hero__illustration {
       margin-top: var(--space-8);
-      transform: rotate(-2deg);
+      --illustration-rotation: -2deg;
+      transform: rotate(var(--illustration-rotation));
     }
   }
 
@@ -139,6 +184,7 @@ const headingLines = heading.split('\n');
     font-weight: 600;
     color: var(--c-ink);
     text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   .hero__link:hover {
