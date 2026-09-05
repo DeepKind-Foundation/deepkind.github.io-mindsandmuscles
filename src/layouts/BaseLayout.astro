@@ -19,6 +19,10 @@ const { title, description, ogImage, ogType, jsonLd, noindex = false } = Astro.p
 
 const settings = await getSettings();
 if (!settings) throw new Error('Missing site settings singleton');
+
+const cfBeaconAttr = settings.analytics.cloudflareToken
+  ? JSON.stringify({ token: settings.analytics.cloudflareToken })
+  : undefined;
 ---
 
 <!doctype html>
@@ -31,6 +35,16 @@ if (!settings) throw new Error('Missing site settings singleton');
     <Seo title={title} description={description} ogImage={ogImage} ogType={ogType} />
     {jsonLd && (
       <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    )}
+    {/* Cloudflare Web Analytics — no cookies/localStorage, so unlike GA4 below it
+        loads unconditionally and needs no cookie-banner consent gate. */}
+    {cfBeaconAttr && (
+      <script
+        is:inline
+        type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={cfBeaconAttr}
+      />
     )}
   </head>
   <body>

@@ -55,6 +55,11 @@ export default config({
             label: 'Google Analytics Measurement ID (G-XXXXXXXXXX)',
             description: 'Leave empty to keep analytics fully disabled.',
           }),
+          cloudflareToken: fields.text({
+            label: 'Cloudflare Web Analytics site token',
+            description:
+              'Loads unconditionally (no cookies/localStorage used, so no consent gate). Leave empty to disable.',
+          }),
         }, { label: 'Analytics' }),
       },
     }),

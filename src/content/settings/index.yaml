@@ -44,3 +44,4 @@ cookieBanner:
   declineLabel: Nie, dziękuję
 analytics:
   gaMeasurementId: G-HEHBHYSZBT
+  cloudflareToken: 91f763b443cc402fb63acd7f4a2e3650
