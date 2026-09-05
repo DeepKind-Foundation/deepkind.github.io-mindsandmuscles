@@ -76,6 +76,13 @@ export default config({
           primaryCtaHref: fields.url({ label: 'Primary button href', validation: { isRequired: true } }),
           secondaryCtaLabel: fields.text({ label: 'Secondary button label' }),
           secondaryCtaHref: fields.text({ label: 'Secondary button href (path or #anchor)' }),
+          illustration: fields.image({
+            label: 'Illustration',
+            directory: 'public/images/home',
+            publicPath: '/images/home/',
+            validation: { isRequired: true },
+          }),
+          illustrationAlt: fields.text({ label: 'Illustration alt text' }),
         }, { label: 'Hero' }),
 
         about: fields.object({

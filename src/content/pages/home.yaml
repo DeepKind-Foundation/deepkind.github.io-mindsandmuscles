@@ -4,12 +4,14 @@ meta:
 
 hero:
   eyebrow: "WITAMY w MINDS & MUSCLES"
-  heading: "Ruch dla ciała. Spokój dla głowy. Czas dla każdego."
+  heading: "Ruch dla ciała. Spokój dla głowy.\nCzas dla każdego."
   body: "Równoległe zajęcia dla dzieci i rodziców — zaprojektowane tak, by każdy dostał to, czego potrzebuje."
   primaryCtaLabel: "ZGŁOŚ ZAINTERESOWANIE"
   primaryCtaHref: "https://forms.gle/GLeR22W6XC5JrNXe9"
   secondaryCtaLabel: "Dowiedz się więcej"
   secondaryCtaHref: "/#o-minds-and-muscles"
+  illustration: /images/home/hero-illustration.webp
+  illustrationAlt: "Rysunek jedną linią przedstawiający rodziców i dzieci podczas ruchu — jogi, biegania i zabawy"
 
 about:
   image: /images/home/about.webp
