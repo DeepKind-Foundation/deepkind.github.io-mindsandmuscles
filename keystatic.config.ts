@@ -45,6 +45,17 @@ export default config({
           instagramUrl: fields.url({ label: 'Instagram URL', validation: { isRequired: true } }),
           copyright: fields.text({ label: 'Copyright line' }),
         }, { label: 'Footer' }),
+        cookieBanner: fields.object({
+          text: fields.text({ label: 'Banner text', multiline: true }),
+          acceptLabel: fields.text({ label: 'Accept button label' }),
+          declineLabel: fields.text({ label: 'Decline button label' }),
+        }, { label: 'Cookie consent banner' }),
+        analytics: fields.object({
+          gaMeasurementId: fields.text({
+            label: 'Google Analytics Measurement ID (G-XXXXXXXXXX)',
+            description: 'Leave empty to keep analytics fully disabled.',
+          }),
+        }, { label: 'Analytics' }),
       },
     }),
 

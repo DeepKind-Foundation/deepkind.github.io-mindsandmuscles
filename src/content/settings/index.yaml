@@ -35,3 +35,12 @@ footer:
   facebookUrl: 'https://www.facebook.com/profile.php?id=61588108561753'
   instagramUrl: 'https://www.instagram.com/mind.s_and_muscle.s'
   copyright: © 2026 Minds & Muscles | Projekt realizowany jest w ramach Fundacji DeepKind
+cookieBanner:
+  text: >-
+    Używamy plików cookies analitycznych (Google Analytics), aby lepiej
+    rozumieć, jak korzystacie ze strony. Twój wybór nie wpływa na możliwość
+    korzystania ze strony.
+  acceptLabel: Akceptuję
+  declineLabel: Nie, dziękuję
+analytics:
+  gaMeasurementId: G-HEHBHYSZBT

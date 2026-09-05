@@ -1,0 +1,186 @@
+---
+interface Props {
+  text: string;
+  acceptLabel: string;
+  declineLabel: string;
+  /** Google Analytics Measurement ID (G-XXXXXXXXXX). Empty/undefined keeps analytics fully disabled — see the script below. */
+  gaMeasurementId?: string;
+}
+
+const { text, acceptLabel, declineLabel, gaMeasurementId } = Astro.props;
+---
+
+<div
+  class="cookie-banner"
+  id="cookie-banner"
+  role="region"
+  aria-label="Informacja o plikach cookies"
+  data-ga-id={gaMeasurementId}
+  hidden
+>
+  <p class="cookie-banner__text">{text}</p>
+  <div class="cookie-banner__actions">
+    <button type="button" class="cookie-banner__decline" id="cookie-decline">{declineLabel}</button>
+    <button type="button" class="cookie-banner__accept" id="cookie-accept">{acceptLabel}</button>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    padding: var(--space-4);
+    font-size: 0.875rem;
+    color: var(--c-white);
+    background: color-mix(in oklch, var(--c-ink) 92%, transparent);
+    border-top: 1px solid color-mix(in oklch, var(--c-white) 15%, transparent);
+    backdrop-filter: blur(20px);
+  }
+  .cookie-banner[hidden] {
+    display: none;
+  }
+  .cookie-banner__text {
+    text-align: center;
+    max-width: 56rem;
+    margin: 0;
+  }
+  .cookie-banner__actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-3);
+  }
+  .cookie-banner__accept,
+  .cookie-banner__decline {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    padding: var(--space-2) var(--space-6);
+    border-radius: 999px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  /* Same size and weight as Accept — declining must be exactly as easy, not a de-emphasized afterthought. */
+  .cookie-banner__decline {
+    border: 2px solid color-mix(in oklch, var(--c-white) 30%, transparent);
+    background: transparent;
+    color: var(--c-white);
+  }
+  .cookie-banner__decline:hover {
+    background: color-mix(in oklch, var(--c-white) 10%, transparent);
+  }
+  .cookie-banner__accept {
+    border: 0;
+    color: var(--c-white);
+    background: var(--c-primary);
+  }
+  .cookie-banner__accept:hover {
+    background: var(--c-primary-hover);
+  }
+
+  @media (min-width: 768px) {
+    .cookie-banner {
+      flex-direction: row;
+    }
+    .cookie-banner__text {
+      text-align: left;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Smooths the space this component reserves at the bottom of the page — see the script below. */
+  body {
+    transition: padding-bottom 0.25s ease;
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      dataLayer: unknown[];
+    }
+  }
+
+  const STORAGE_KEY = 'mm-cookie-consent';
+  const PRODUCTION_HOSTNAME = 'mindsandmuscles.pl';
+  const banner = document.getElementById('cookie-banner');
+  const accept = document.getElementById('cookie-accept');
+  const decline = document.getElementById('cookie-decline');
+
+  /**
+   * Loads Google Analytics — but only ever called after explicit accept,
+   * never on page load speculatively. No script tag exists anywhere else
+   * on the site; nothing is requested from Google's servers until this
+   * runs. Also gated on the production hostname, so local dev and any
+   * preview environment never pollutes real analytics data.
+   */
+  function loadAnalytics(measurementId: string): void {
+    if (window.location.hostname !== PRODUCTION_HOSTNAME) return;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer ?? [];
+    function gtag(...args: unknown[]) {
+      window.dataLayer.push(args);
+    }
+    gtag('js', new Date());
+    gtag('config', measurementId);
+  }
+
+  if (banner && accept && decline) {
+    let consent: string | null = null;
+    try {
+      consent = localStorage.getItem(STORAGE_KEY);
+    } catch {
+      consent = null;
+    }
+
+    const gaId = banner.dataset.gaId;
+    if (consent === 'accepted' && gaId) {
+      loadAnalytics(gaId);
+    }
+
+    if (consent !== 'accepted' && consent !== 'declined') {
+      banner.hidden = false;
+      // Being `position: fixed`, the banner covers whatever content happens
+      // to sit at the bottom of the viewport instead of pushing it up — on
+      // a short mobile screen that can hide the last item on the page
+      // until the banner is dismissed. Reserve that much space at the
+      // bottom of the page instead. Recomputed via ResizeObserver since the
+      // banner's own height changes (it switches from a stacked to a row
+      // layout at the 768px breakpoint).
+      const reserveSpace = () => {
+        document.body.style.paddingBottom = `${banner.offsetHeight}px`;
+      };
+      reserveSpace();
+      new ResizeObserver(reserveSpace).observe(banner);
+    }
+
+    const dismiss = (value: 'accepted' | 'declined') => {
+      banner.hidden = true;
+      document.body.style.paddingBottom = '';
+      try {
+        localStorage.setItem(STORAGE_KEY, value);
+      } catch {
+        // ignore storage failures (private mode); banner simply reappears next visit
+      }
+    };
+
+    accept.addEventListener('click', () => {
+      dismiss('accepted');
+      if (gaId) loadAnalytics(gaId);
+    });
+
+    decline.addEventListener('click', () => {
+      dismiss('declined');
+    });
+  }
+</script>

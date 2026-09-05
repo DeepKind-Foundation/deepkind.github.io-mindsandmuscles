@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Seo from '../components/Seo.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { getSettings } from '../lib/reader';
 
 interface Props {
@@ -39,5 +40,11 @@ if (!settings) throw new Error('Missing site settings singleton');
       <slot />
     </main>
     <Footer settings={settings} />
+    <CookieBanner
+      text={settings.cookieBanner.text}
+      acceptLabel={settings.cookieBanner.acceptLabel}
+      declineLabel={settings.cookieBanner.declineLabel}
+      gaMeasurementId={settings.analytics.gaMeasurementId}
+    />
   </body>
 </html>
