@@ -25,7 +25,7 @@ const { variant } = Astro.props;
 
 <style>
   .divider-band--yellow {
-    height: 121px;
+    height: var(--space-8);
     background: var(--c-yellow);
   }
 
@@ -36,7 +36,7 @@ const { variant } = Astro.props;
 
   .divider-band__row {
     display: flex;
-    height: 70px;
+    height: var(--space-4);
   }
 
   .divider-band__cell--primary,
