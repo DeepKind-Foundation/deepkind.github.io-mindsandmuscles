@@ -18,15 +18,45 @@ const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
         {buttonLabel}
       </a>
     </div>
-    <!-- Single-path decorative accent, inlined (not a standalone .svg file) so it can
-         pick up --c-accent via currentColor across this section's dark background. -->
-    <svg class="cta-banner__accent" viewBox="0 0 200 320" fill="none" aria-hidden="true" role="presentation">
-      <path
-        d="M20 10C70 60 10 110 60 160C110 210 40 260 90 310"
-        stroke="currentColor"
-        stroke-width="10"
-        stroke-linecap="round"
-      />
+    <!-- Constellation motif (overlapping faint rings + colored node dots at
+         their intersections) — modeled on deepkind.org's hero graphic. Rings
+         share one faint stroke color; dots are individually colored from the
+         site's existing palette, unlike DividerBand/PostCard's single-line
+         squiggles, so this reads as more deliberate/composed. -->
+    <svg class="cta-banner__accent" viewBox="0 0 200 280" fill="none" aria-hidden="true" role="presentation">
+      <!-- Dense cluster composition — many overlapping rings bunched together,
+         busier/higher-energy than Newsletter's sparser orbital layout below. -->
+      <circle cx="145" cy="55" r="40" stroke="currentColor" stroke-width="1" stroke-opacity="0.28" />
+      <circle cx="75" cy="90" r="62" stroke="currentColor" stroke-width="1" stroke-opacity="0.22" />
+      <!-- open arc instead of a closed ring, for variety -->
+      <path d="M167,131 A34,34 0 1 1 118,148" stroke="currentColor" stroke-width="1" stroke-opacity="0.24" />
+      <circle cx="65" cy="195" r="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.18" />
+      <circle cx="170" cy="210" r="20" stroke="currentColor" stroke-width="1" stroke-opacity="0.26" />
+      <circle cx="40" cy="140" r="18" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" />
+      <!-- flattened ellipse "orbit", set apart from the main cluster, with a
+           small dot riding its rim like a satellite -->
+      <ellipse cx="115" cy="255" rx="26" ry="14" stroke="currentColor" stroke-width="1" stroke-opacity="0.22" />
+
+      <circle cx="108" cy="78" r="6" fill="var(--c-primary)" />
+      <circle cx="152" cy="20" r="4" fill="var(--c-accent-vivid)" />
+      <circle cx="183" cy="41" r="4.5" fill="var(--c-yellow)" />
+      <circle cx="95" cy="120" r="5" fill="var(--c-accent-vivid)" />
+      <circle cx="18" cy="90" r="3.5" fill="var(--c-yellow)" />
+      <circle cx="150" cy="128" r="5" fill="var(--c-primary)" />
+      <circle cx="85" cy="175" r="3.5" fill="var(--c-accent-vivid)" />
+      <circle cx="57" cy="242" r="5.5" fill="var(--c-yellow)" />
+      <!-- rides the ellipse's rim very slowly — the only moving element,
+           everything else stays still -->
+      <circle cx="0" cy="0" r="4" fill="var(--c-accent-vivid)" class="orbit-dot orbit-dot--a" />
+      <circle cx="178" cy="215" r="3" fill="var(--c-primary)" />
+      <circle cx="188" cy="205" r="4.5" fill="var(--c-yellow)" />
+      <circle cx="155" cy="225" r="3.5" fill="var(--c-accent)" />
+      <circle cx="45" cy="125" r="4" fill="var(--c-accent)" />
+      <circle cx="25" cy="150" r="3" fill="var(--c-yellow)" />
+      <circle cx="55" cy="155" r="4.5" fill="var(--c-primary)" />
+      <circle cx="120" cy="40" r="3" fill="var(--c-accent)" />
+      <circle cx="60" cy="60" r="5" fill="var(--c-yellow)" />
+      <circle cx="100" cy="255" r="3" fill="var(--c-primary)" />
     </svg>
   </div>
 </section>
@@ -63,11 +93,9 @@ const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
   .cta-banner__accent {
     justify-self: end;
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
     height: auto;
     color: var(--c-accent);
-    opacity: 0.5;
-    transform: rotate(6deg);
   }
 
   @media (max-width: 720px) {
@@ -82,6 +110,17 @@ const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
 
     .cta-banner__accent {
       display: none;
+    }
+  }
+
+  /* Only the satellite dot moves, tracing the ellipse it sits on — everything
+     else in the constellation stays still. Slow enough (32s per lap) that it
+     reads as "alive" rather than as an obvious animation. */
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-dot--a {
+      offset-path: path('M89,255 A26,14 0 1 0 141,255 A26,14 0 1 0 89,255');
+      offset-distance: 0%;
+      animation: orbit-travel 32s linear infinite;
     }
   }
 </style>

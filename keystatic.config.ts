@@ -55,6 +55,11 @@ export default config({
             label: 'Google Analytics Measurement ID (G-XXXXXXXXXX)',
             description: 'Leave empty to keep analytics fully disabled.',
           }),
+          cloudflareToken: fields.text({
+            label: 'Cloudflare Web Analytics site token',
+            description:
+              'Loads unconditionally (no cookies/localStorage used, so no consent gate). Leave empty to disable.',
+          }),
         }, { label: 'Analytics' }),
       },
     }),
@@ -168,6 +173,19 @@ export default config({
           privacySuffix: fields.text({ label: 'Privacy copy — after the link' }),
           successMessage: fields.text({ label: 'Success message', multiline: true }),
         }, { label: 'Newsletter signup' }),
+      },
+    }),
+
+    kontakt: singleton({
+      label: 'Kontakt Page',
+      path: 'src/content/pages/kontakt',
+      schema: {
+        meta: fields.object({
+          title: fields.text({ label: 'Meta title' }),
+          description: fields.text({ label: 'Meta description', multiline: true }),
+        }, { label: 'SEO metadata' }),
+        heading: fields.text({ label: 'Heading (H1)' }),
+        intro: fields.text({ label: 'Intro copy', multiline: true }),
       },
     }),
   },

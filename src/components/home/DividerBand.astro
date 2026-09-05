@@ -1,54 +1,74 @@
 ---
 interface Props {
-  variant: 'yellow' | 'striped';
+  tone: 'primary' | 'accent';
 }
 
-const { variant } = Astro.props;
+const { tone } = Astro.props;
+
+// Each divider gets its own hand-drawn squiggle (different rhythm, different
+// loop placement) rather than one shape recolored twice — otherwise the two
+// read as the same sticker stamped down again.
+const PATHS = {
+  primary: {
+    d: 'M0,45 C80,20 140,65 210,42 C270,25 300,10 330,35 C350,52 318,58 303,38 C294,22 322,8 352,16 C402,29 432,56 482,49 C542,41 562,14 612,20 C672,28 702,62 762,46 C832,29 882,52 942,39 C1002,25 1052,56 1112,41 C1172,23 1232,51 1292,36 C1342,21 1402,49 1440,43',
+    dotX: 762,
+    dotY: 46,
+  },
+  accent: {
+    d: 'M0,48 C70,25 130,68 190,40 C250,15 310,60 370,35 C430,58 470,22 520,45 C570,60 610,35 580,52 C550,68 590,78 620,55 C680,30 740,62 800,40 C870,18 930,55 990,35 C1050,60 1100,20 1160,42 C1220,65 1270,25 1330,45 C1380,60 1410,25 1440,40',
+    dotX: 800,
+    dotY: 40,
+  },
+} as const;
+
+const path = PATHS[tone];
 ---
 
-{variant === 'yellow' && <div class="divider-band divider-band--yellow" role="presentation" />}
-
-{variant === 'striped' && (
-  <div class="divider-band divider-band--striped" role="presentation">
-    <div class="divider-band__row">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div class={i % 2 === 0 ? 'divider-band__cell--primary' : 'divider-band__cell--accent'} />
-      ))}
-    </div>
-    <div class="divider-band__row">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div class={i % 2 === 0 ? 'divider-band__cell--accent' : 'divider-band__cell--primary'} />
-      ))}
-    </div>
-  </div>
-)}
+<!-- Single hand-drawn wave, not a solid color block — matches the Wellness/Health
+     "single-axis undulating path, no sharp angles" guidance and echoes the Hero's
+     line-art. The small yellow dot at the midpoint is the only place on the page
+     yellow appears outside the footer, so the footer's block of it reads as a
+     deliberate payoff rather than an orphaned color. -->
+<div class={`divider-band divider-band--${tone}`} role="presentation">
+  <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path
+      d={path.d}
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-opacity="0.55"
+    />
+    <circle cx={path.dotX} cy={path.dotY} r="4" fill="var(--c-yellow)" />
+  </svg>
+</div>
 
 <style>
-  .divider-band--yellow {
-    height: var(--space-8);
-    background: var(--c-yellow);
+  .divider-band {
+    padding-block: var(--space-4);
+    overflow: hidden;
   }
 
-  .divider-band--striped {
-    display: flex;
-    flex-direction: column;
+  /* Fixed height at every width (not shrunk with the viewport) + slice-mode
+     scaling below means narrow screens crop to a legible center portion of
+     the wave instead of squishing all the bumps into an illegible sliver.
+     max-width caps the render at the design's native 1440-unit scale — past
+     that, slice's scale factor keeps growing with viewport width, which
+     shrinks the visible vertical slice and eventually clips a sliver off the
+     wave's tallest points. Capping at 1:1 scale removes that ceiling instead
+     of just raising it. */
+  .divider-band svg {
+    display: block;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    height: 64px;
   }
 
-  .divider-band__row {
-    display: flex;
-    height: var(--space-4);
+  .divider-band--primary {
+    color: var(--c-primary);
   }
 
-  .divider-band__cell--primary,
-  .divider-band__cell--accent {
-    flex: 1;
-  }
-
-  .divider-band__cell--primary {
-    background: var(--c-primary);
-  }
-
-  .divider-band__cell--accent {
-    background: var(--c-accent-vivid);
+  .divider-band--accent {
+    color: var(--c-accent-vivid);
   }
 </style>

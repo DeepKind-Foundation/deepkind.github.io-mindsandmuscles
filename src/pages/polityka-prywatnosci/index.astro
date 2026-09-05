@@ -9,7 +9,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 >
   <section class="policy section">
     <div class="container policy__inner">
-      <p class="policy__meta">Data obowiązywania: 05.09.2026 · Wersja: 1.1</p>
+      <p class="policy__meta">Data obowiązywania: 05.09.2026 · Wersja: 1.2</p>
       <h1>Polityka prywatności</h1>
 
       <div class="policy__content">
@@ -38,7 +38,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <li>Adres kontaktowy w sprawach RODO: <a href="mailto:rodo@deepkind.org">rodo@deepkind.org</a></li>
             <li>
               Kontakt w sprawach bieżących projektu Minds & Muscles:
-              <a href="mailto:kontakt@mindsmuscles.pl">kontakt@mindsmuscles.pl</a>
+              <a href="mailto:mindsandmuscles@deepkind.org">mindsandmuscles@deepkind.org</a>
             </li>
             <li>Osoba odpowiedzialna za ochronę danych: Joanna Lange</li>
           </ul>
@@ -102,13 +102,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
 
           <div class="policy__card">
-            <h3>Statystyki i analityka internetowa</h3>
+            <h3>Statystyki i analityka internetowa — Google Analytics 4</h3>
             <p>
               Strona wykorzystuje Google Analytics 4 do zbierania anonimowych statystyk odwiedzin,
               wyłącznie po wyrażeniu zgody w banerze cookies wyświetlanym przy pierwszej wizycie.
               Bez zgody narzędzie się nie wczytuje.
             </p>
             <p>Podstawa prawna: art. 6 ust. 1 lit. a RODO (zgoda).</p>
+          </div>
+
+          <div class="policy__card">
+            <h3>Statystyki i analityka internetowa — Cloudflare Web Analytics</h3>
+            <p>
+              Strona wykorzystuje również Cloudflare Web Analytics do zbierania anonimowych statystyk
+              odwiedzin. Narzędzie to nie zapisuje plików cookies ani żadnych danych w przeglądarce i nie
+              śledzi użytkowników między odwiedzinami, dlatego działa niezależnie od wyboru dokonanego w
+              banerze cookies.
+            </p>
+            <p>Podstawa prawna: art. 6 ust. 1 lit. f RODO (uzasadniony interes, tj. analiza ruchu na stronie).</p>
           </div>
         </section>
 
@@ -137,6 +148,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <h3>Podmioty przetwarzające dane w naszym imieniu</h3>
             <ul>
               <li>Google (formularz zgłoszeniowy Google Forms, poczta i dysk Google, Google Analytics 4 — po zgodzie w banerze cookies),</li>
+              <li>Cloudflare (Cloudflare Web Analytics — anonimowe statystyki odwiedzin, bez plików cookies),</li>
               <li>dostawca hostingu strony internetowej (GitHub Pages),</li>
               <li>narzędzia wykorzystywane w ramach Fundacji do organizacji projektów (m.in. Dropbox, Slack, Asana).</li>
             </ul>
@@ -189,7 +201,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <p>
             Żądania dotyczące tych praw można kierować na adres:
             <a href="mailto:rodo@deepkind.org">rodo@deepkind.org</a> lub
-            <a href="mailto:kontakt@mindsmuscles.pl">kontakt@mindsmuscles.pl</a>.
+            <a href="mailto:mindsandmuscles@deepkind.org">mindsandmuscles@deepkind.org</a>.
           </p>
         </section>
 
@@ -197,7 +209,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <h2>10. Pliki cookies</h2>
           <p>
             Strona wykorzystuje plik cookie analityczny (Google Analytics 4) wyłącznie po wyrażeniu
-            zgody w banerze cookies — nie stosujemy cookies marketingowych. Szczegóły znajdują się w
+            zgody w banerze cookies — nie stosujemy cookies marketingowych. Cloudflare Web Analytics nie
+            zapisuje żadnych plików cookies i działa niezależnie od tego wyboru. Szczegóły znajdują się w
             <a href="/polityka-cookies/">Polityce cookies</a>.
           </p>
         </section>
@@ -234,7 +247,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <p>
             W sprawach dotyczących danych osobowych prosimy o kontakt:
             <a href="mailto:rodo@deepkind.org">rodo@deepkind.org</a> lub
-            <a href="mailto:kontakt@mindsmuscles.pl">kontakt@mindsmuscles.pl</a>.
+            <a href="mailto:mindsandmuscles@deepkind.org">mindsandmuscles@deepkind.org</a>.
           </p>
         </section>
       </div>

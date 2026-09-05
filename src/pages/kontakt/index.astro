@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { reader, getSettings } from '../../lib/reader';
+
+const [kontakt, home, settings] = await Promise.all([
+  reader.singletons.kontakt.read(),
+  reader.singletons.home.read(),
+  getSettings(),
+]);
+if (!kontakt) throw new Error('Missing kontakt page singleton');
+if (!home) throw new Error('Missing home page singleton');
+if (!settings) throw new Error('Missing site settings singleton');
+
+const { newsletter } = home;
+const { footer } = settings;
+---
+
+<BaseLayout title={kontakt.meta.title} description={kontakt.meta.description}>
+  <section class="kontakt section">
+    <div class="container kontakt__grid">
+      <div class="kontakt__info">
+        <h1>{kontakt.heading}</h1>
+        <p class="kontakt__intro">{kontakt.intro}</p>
+
+        <div class="kontakt__links">
+          <a href={`mailto:${footer.email}`} class="kontakt__email">{footer.email}</a>
+          <a href={`tel:${footer.phone.replace(/\s+/g, '')}`} class="kontakt__phone">{footer.phone}</a>
+          <div class="kontakt__socials">
+            <a href={footer.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href={footer.instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="kontakt__newsletter">
+        <span class="eyebrow">Newsletter</span>
+        <h2>{newsletter.heading}</h2>
+        <p class="kontakt__newsletter-subheading">{newsletter.subheading}</p>
+
+        {/* Not wired to a provider yet — swap the form action for the chosen ESP's endpoint. */}
+        <form class="kontakt__newsletter-form">
+          <label class="visually-hidden" for="kontakt-newsletter-email">Adres email</label>
+          <input
+            id="kontakt-newsletter-email"
+            type="email"
+            name="email"
+            required
+            placeholder="Adres email *"
+            aria-label="Adres email *"
+          />
+          <button type="submit" class="button button--primary">{newsletter.submitLabel}</button>
+        </form>
+
+        <p class="kontakt__newsletter-privacy">
+          {newsletter.privacyPrefix}<a href={newsletter.privacyLinkHref}>{newsletter.privacyLinkLabel}</a>{newsletter.privacySuffix}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .kontakt__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .kontakt__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .kontakt__intro {
+    color: var(--c-body);
+    max-width: 480px;
+  }
+
+  .kontakt__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .kontakt__email {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--c-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .kontakt__email:hover {
+    color: var(--c-primary-hover);
+  }
+
+  .kontakt__phone {
+    color: var(--c-ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .kontakt__socials {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .kontakt__socials a {
+    color: var(--c-ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 2px solid color-mix(in srgb, currentColor 15%, transparent);
+    border-radius: 999px;
+    padding: var(--space-2) var(--space-4);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .kontakt__socials a:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+  }
+
+  /* Dark card, same background/button treatment as CtaBanner, so this page
+     doesn't introduce a third visual language for "dark section" on the site. */
+  .kontakt__newsletter {
+    position: relative;
+    overflow: hidden;
+    background: var(--c-ink);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .kontakt__newsletter::before {
+    content: '';
+    position: absolute;
+    top: -4rem;
+    right: -4rem;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c-primary) 25%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .kontakt__newsletter .eyebrow {
+    color: var(--c-accent);
+    position: relative;
+  }
+
+  .kontakt__newsletter h2 {
+    color: var(--c-white);
+    font-size: 1.5rem;
+    position: relative;
+  }
+
+  .kontakt__newsletter-subheading {
+    color: color-mix(in srgb, var(--c-white) 70%, transparent);
+    position: relative;
+  }
+
+  .kontakt__newsletter-form {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    position: relative;
+  }
+
+  .kontakt__newsletter-form input {
+    flex: 1;
+    min-height: var(--space-12);
+    padding-inline: var(--space-4);
+    border: 2px solid color-mix(in srgb, var(--c-white) 20%, transparent);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--c-white) 8%, transparent);
+    color: var(--c-white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+
+  .kontakt__newsletter-form input::placeholder {
+    color: color-mix(in srgb, var(--c-white) 45%, transparent);
+  }
+
+  .kontakt__newsletter-privacy {
+    margin-top: var(--space-3);
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--c-white) 55%, transparent);
+    position: relative;
+  }
+
+  .kontakt__newsletter-privacy a {
+    color: color-mix(in srgb, var(--c-white) 80%, transparent);
+  }
+
+  @media (max-width: 860px) {
+    .kontakt__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .kontakt__newsletter-form {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -51,12 +51,12 @@ const websiteJsonLd = {
 
 <BaseLayout title={home.meta.title} description={home.meta.description} jsonLd={websiteJsonLd}>
   <Hero {...home.hero} />
-  <DividerBand variant="yellow" />
+  <DividerBand tone="primary" />
   <About {...home.about} />
   <HowItWorks {...home.howItWorks} />
   <ClassTypes {...home.classTypes} />
   <CtaBanner {...home.ctaBanner} />
-  <DividerBand variant="striped" />
+  <DividerBand tone="accent" />
   <BlogTeaser {...home.blogTeaser} posts={latestPosts} />
   <Newsletter {...home.newsletter} />
 </BaseLayout>
