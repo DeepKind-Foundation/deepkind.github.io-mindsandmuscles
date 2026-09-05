@@ -8,7 +8,6 @@ interface Props {
   secondaryCtaLabel: string;
   secondaryCtaHref: string;
   illustration: string;
-  illustrationMobile: string;
   illustrationAlt: string;
 }
 
@@ -21,13 +20,12 @@ const {
   secondaryCtaLabel,
   secondaryCtaHref,
   illustration,
-  illustrationMobile,
   illustrationAlt,
 } = Astro.props;
 ---
 
 <section id="home" class="hero section">
-  <div class="container hero__grid">
+  <div class="container">
     <div class="hero__inner">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{heading}</h1>
@@ -39,27 +37,22 @@ const {
         <a href={secondaryCtaHref} class="hero__link">{secondaryCtaLabel} →</a>
       </div>
     </div>
-    <picture class="hero__illustration">
-      <source media="(max-width: 720px)" srcset={illustrationMobile} />
-      <img src={illustration} alt={illustrationAlt} width="900" height="672" loading="eager" fetchpriority="high" />
-    </picture>
+    <img
+      class="hero__illustration"
+      src={illustration}
+      alt={illustrationAlt}
+      width="1200"
+      height="385"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 </section>
 
 <style>
   .hero {
-    display: flex;
-    align-items: center;
-    min-height: calc(100vh - 80px);
-    padding-block: var(--space-16);
+    padding-block: var(--space-16) var(--space-8);
     background: linear-gradient(180deg, var(--c-surface), var(--c-white));
-  }
-
-  .hero__grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: var(--space-12);
   }
 
   .hero__inner {
@@ -68,30 +61,18 @@ const {
 
   .hero__illustration {
     display: block;
-    justify-self: center;
-  }
-
-  .hero__illustration img {
-    display: block;
     width: 100%;
-    max-width: 420px;
     height: auto;
-  }
-
-  @media (max-width: 720px) {
-    .hero__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero__illustration img {
-      max-width: 200px;
-    }
+    margin-top: var(--space-16);
   }
 
   @media (max-width: 640px) {
     .hero {
-      min-height: auto;
-      padding-block: var(--space-16) var(--space-12);
+      padding-block: var(--space-16) var(--space-8);
+    }
+
+    .hero__illustration {
+      margin-top: var(--space-12);
     }
   }
 

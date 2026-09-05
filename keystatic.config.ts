@@ -77,13 +77,7 @@ export default config({
           secondaryCtaLabel: fields.text({ label: 'Secondary button label' }),
           secondaryCtaHref: fields.text({ label: 'Secondary button href (path or #anchor)' }),
           illustration: fields.image({
-            label: 'Illustration (desktop)',
-            directory: 'public/images/home',
-            publicPath: '/images/home/',
-            validation: { isRequired: true },
-          }),
-          illustrationMobile: fields.image({
-            label: 'Illustration (mobile crop)',
+            label: 'Illustration',
             directory: 'public/images/home',
             publicPath: '/images/home/',
             validation: { isRequired: true },
