@@ -65,6 +65,12 @@ const { heading, subheading, steps, images } = Astro.props;
     padding: var(--space-6);
   }
 
+  /* Alternating vertical offset breaks the row into a staggered read instead
+     of four identical cards in a straight line. */
+  .how-it-works__steps li:nth-child(even) {
+    margin-top: var(--space-8);
+  }
+
   .how-it-works__steps h3 {
     font-size: 1rem;
     color: var(--c-primary);
@@ -89,10 +95,25 @@ const { heading, subheading, steps, images } = Astro.props;
     border-radius: var(--radius);
   }
 
+  /* Mirror the steps' stagger, offset upward here so the two grids don't
+     read as the same pattern repeated twice. transform (not margin) so the
+     shift doesn't affect the grid's own row-height calculation. */
+  .how-it-works__gallery img:nth-child(even) {
+    transform: translateY(calc(-1 * var(--space-8)));
+  }
+
   @media (max-width: 960px) {
     .how-it-works__steps,
     .how-it-works__gallery {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how-it-works__steps li:nth-child(even) {
+      margin-top: 0;
+    }
+
+    .how-it-works__gallery img:nth-child(even) {
+      transform: none;
     }
   }
 </style>

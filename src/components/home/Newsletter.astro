@@ -14,38 +14,66 @@ const { heading, subheading, submitLabel, privacyPrefix, privacyLinkLabel, priva
 ---
 
 <section class="newsletter section">
-  <div class="container newsletter__inner">
-    <h2>{heading}</h2>
-    <p class="newsletter__subheading">{subheading}</p>
+  <div class="container newsletter__grid">
+    <div class="newsletter__inner">
+      <h2>{heading}</h2>
+      <p class="newsletter__subheading">{subheading}</p>
 
-    {/* Not wired to a provider yet — swap the form action for the chosen ESP's endpoint. */}
-    <form class="newsletter__form">
-      <label class="visually-hidden" for="newsletter-email">Adres email</label>
-      <input
-        id="newsletter-email"
-        type="email"
-        name="email"
-        required
-        placeholder="Adres email *"
-        aria-label="Adres email *"
+      {/* Not wired to a provider yet — swap the form action for the chosen ESP's endpoint. */}
+      <form class="newsletter__form">
+        <label class="visually-hidden" for="newsletter-email">Adres email</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          required
+          placeholder="Adres email *"
+          aria-label="Adres email *"
+        />
+        <button type="submit" class="button button--primary">{submitLabel}</button>
+      </form>
+
+      <p class="newsletter__privacy">
+        {privacyPrefix}<a href={privacyLinkHref}>{privacyLinkLabel}</a>{privacySuffix}
+      </p>
+    </div>
+    <!-- Same inlined single-path accent family as CtaBanner, mirrored and
+         recoloured for this section's light surface background. -->
+    <svg class="newsletter__accent" viewBox="0 0 200 320" fill="none" aria-hidden="true" role="presentation">
+      <path
+        d="M180 10C130 60 190 110 140 160C90 210 160 260 110 310"
+        stroke="currentColor"
+        stroke-width="10"
+        stroke-linecap="round"
       />
-      <button type="submit" class="button button--primary">{submitLabel}</button>
-    </form>
-
-    <p class="newsletter__privacy">
-      {privacyPrefix}<a href={privacyLinkHref}>{privacyLinkLabel}</a>{privacySuffix}
-    </p>
+    </svg>
   </div>
 </section>
 
 <style>
   .newsletter {
     background: var(--c-surface);
-    text-align: center;
+  }
+
+  .newsletter__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-8);
   }
 
   .newsletter__inner {
-    max-width: 560px;
+    max-width: 480px;
+  }
+
+  .newsletter__accent {
+    justify-self: end;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    color: var(--c-primary);
+    opacity: 0.35;
+    transform: rotate(-8deg);
   }
 
   .newsletter__subheading {
@@ -72,6 +100,22 @@ const { heading, subheading, submitLabel, privacyPrefix, privacyLinkLabel, priva
     margin-top: var(--space-4);
     font-size: 0.85rem;
     color: var(--c-muted);
+  }
+
+  @media (max-width: 720px) {
+    .newsletter__grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .newsletter__inner {
+      max-width: none;
+    }
+
+    .newsletter__accent {
+      display: none;
+    }
   }
 
   @media (max-width: 560px) {

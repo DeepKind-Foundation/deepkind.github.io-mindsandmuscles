@@ -40,6 +40,12 @@ const { heading, items } = Astro.props;
     margin-top: var(--space-16);
   }
 
+  /* Same alternating-offset vocabulary as HowItWorks — with 3 items this
+     shifts only the middle card, breaking the row without a fourth item. */
+  .class-types__item:nth-child(even) {
+    margin-top: var(--space-8);
+  }
+
   .class-types__item {
     position: relative;
     background: var(--c-surface);
@@ -75,6 +81,10 @@ const { heading, items } = Astro.props;
   @media (max-width: 860px) {
     .class-types__grid {
       grid-template-columns: 1fr;
+    }
+
+    .class-types__item:nth-child(even) {
+      margin-top: 0;
     }
   }
 </style>

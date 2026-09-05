@@ -41,6 +41,30 @@ illustration all render instantly with no stagger, unlike `CookieBanner.astro`'s
 **Verify:** visual check at 1440px and 390px with motion enabled; confirm instant appearance
 (no animation) with `prefers-reduced-motion: reduce` simulated in devtools.
 
+## Phase 1.5 — Full-page design remediation (done)
+
+From `/review-design` run against the entire homepage (not just Hero.astro). Six of seven
+findings were symmetric-grid/centered-layout violations repeated across `HowItWorks`,
+`ClassTypes`, `CtaBanner`, `BlogTeaser`, and `Newsletter`, plus a missing hover state on
+`PostCard`. All implemented:
+
+- `PostCard.astro` — added hover/focus-visible lift (translateY + shadow) and image scale,
+  gated in `prefers-reduced-motion: no-preference`.
+- `CtaBanner.astro` — replaced centered text block with an asymmetric grid (text left, inlined
+  single-path SVG accent right, `currentColor`-driven so it picks up `--c-accent`).
+- `Newsletter.astro` — same asymmetric-grid + inlined SVG-accent treatment, mirrored and
+  recoloured (`--c-primary`) for its light-surface background.
+- `BlogTeaser.astro` + `PostCard.astro` — newest post now spans a featured 2fr column (larger
+  image, `h2`), other two stacked in a narrower 1fr column, via a new `featured` prop.
+- `HowItWorks.astro` — both the steps list and image gallery get an alternating vertical stagger
+  (`nth-child(even)`) instead of two identical `repeat(4, 1fr)` rows.
+- `ClassTypes.astro` — same alternating-stagger treatment; with 3 items this offsets only the
+  middle card.
+
+All six collapse cleanly to single-column/no-accent on mobile (verified at 390px, no horizontal
+overflow). Not touched: the divider pattern itself (folded into Phase 3 below, unchanged) and
+Newsletter's ESP wiring (Phase 4b, unchanged — this pass was layout-only).
+
 ## Phase 3 — Divider pattern character (flagged, not committed — needs a decision)
 
 Design audit flagged: the striped divider's hard-edged checkerboard doesn't match the
