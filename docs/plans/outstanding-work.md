@@ -83,13 +83,13 @@ redesign might replace this component entirely anyway.
 
 Carried over from the original site audit, not yet started.
 
-4a. **`/kontakt/` page** — linked in nav + footer, 404s. No legacy content was captured for it
-    during the original migration (confirmed: `content-inventory/` has nothing for this page).
-    **Needs from you:** what should this page actually contain? Options to choose from or
-    combine: the same Google Form used for class signup (`forms.gle/GLeR22W6XC5JrNXe9`),
-    contact details already in the footer (phone, email, Facebook, Instagram), a simple contact
-    form (would need its own backend — see 4b's email-provider dependency), or a map/address if
-    the studio has a physical location. Can't build a real page without knowing which of these.
+4a. **`/kontakt/` page** — done. Built as a two-column page (`src/pages/kontakt/index.astro`)
+    modeled on deepkind.org's Contact section: left column is a heading/intro plus the footer's
+    existing phone, email, and social links; right column is a dark newsletter-signup card
+    reusing the homepage's `newsletter` content fields. New `kontakt` Keystatic singleton for the
+    page's own heading/intro copy, matching the `home` singleton's pattern rather than
+    hardcoding text. No new content decisions were needed beyond this — no Google Form, no
+    separate contact form/backend, no map/address.
 
 4b. **Newsletter signup** — UI exists (`Newsletter.astro`), not wired to anything; the site
     currently promises "check your inbox" with no actual email-provider integration behind it.

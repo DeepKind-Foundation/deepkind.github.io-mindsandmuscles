@@ -232,3 +232,11 @@ img {
 .skip-link:focus {
   top: var(--space-4);
 }
+
+/* Shared by CtaBanner/Newsletter's constellation-accent orbit dots — a plain
+   0%->100% offset-distance sweep, reused instead of duplicated per component. */
+@keyframes orbit-travel {
+  to {
+    offset-distance: 100%;
+  }
+}

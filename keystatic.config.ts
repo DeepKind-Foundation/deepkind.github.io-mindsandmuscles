@@ -175,6 +175,19 @@ export default config({
         }, { label: 'Newsletter signup' }),
       },
     }),
+
+    kontakt: singleton({
+      label: 'Kontakt Page',
+      path: 'src/content/pages/kontakt',
+      schema: {
+        meta: fields.object({
+          title: fields.text({ label: 'Meta title' }),
+          description: fields.text({ label: 'Meta description', multiline: true }),
+        }, { label: 'SEO metadata' }),
+        heading: fields.text({ label: 'Heading (H1)' }),
+        intro: fields.text({ label: 'Intro copy', multiline: true }),
+      },
+    }),
   },
 
   collections: {

@@ -37,15 +37,40 @@ const { heading, subheading, submitLabel, privacyPrefix, privacyLinkLabel, priva
         {privacyPrefix}<a href={privacyLinkHref}>{privacyLinkLabel}</a>{privacySuffix}
       </p>
     </div>
-    <!-- Same inlined single-path accent family as CtaBanner, mirrored and
-         recoloured for this section's light surface background. -->
-    <svg class="newsletter__accent" viewBox="0 0 200 320" fill="none" aria-hidden="true" role="presentation">
-      <path
-        d="M180 10C130 60 190 110 140 160C90 210 160 260 110 310"
-        stroke="currentColor"
-        stroke-width="10"
-        stroke-linecap="round"
-      />
+    <!-- Same constellation language as CtaBanner (deepkind.org hero reference) —
+         its own distinct ring/dot arrangement, fewer rings for a smaller footprint. -->
+    <svg class="newsletter__accent" viewBox="0 0 200 220" fill="none" aria-hidden="true" role="presentation">
+      <!-- Orbital-system composition — sparser than CtaBanner's dense cluster,
+         built around two separate satellite orbits plus one small standalone
+         ring, instead of one big overlapping cluster. -->
+      <circle cx="145" cy="45" r="34" stroke="currentColor" stroke-width="1" stroke-opacity="0.32" />
+      <circle cx="60" cy="80" r="52" stroke="currentColor" stroke-width="1" stroke-opacity="0.26" />
+      <!-- open arc instead of a closed ring, for variety — moved into the
+           former dead center of the composition instead of sitting to one side -->
+      <path d="M143,150 A30,30 0 1 1 120,110" stroke="currentColor" stroke-width="1" stroke-opacity="0.28" />
+      <!-- small standalone ring, set apart from the main pair -->
+      <circle cx="25" cy="35" r="15" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" />
+      <!-- two flattened ellipse "orbits" — one now bridges the middle-right
+           gap instead of both sitting side by side at the bottom -->
+      <ellipse cx="55" cy="185" rx="20" ry="12" stroke="currentColor" stroke-width="1" stroke-opacity="0.24" />
+      <ellipse cx="150" cy="155" rx="18" ry="10" stroke="currentColor" stroke-width="1" stroke-opacity="0.26" />
+
+      <circle cx="128" cy="55" r="5.5" fill="var(--c-accent-vivid)" />
+      <circle cx="95" cy="40" r="3" fill="var(--c-yellow)" />
+      <circle cx="172" cy="15" r="4" fill="var(--c-primary)" />
+      <circle cx="75" cy="105" r="6" fill="var(--c-primary)" />
+      <circle cx="12" cy="75" r="3.5" fill="var(--c-yellow)" />
+      <circle cx="135" cy="145" r="4.5" fill="var(--c-accent-vivid)" />
+      <circle cx="22" cy="45" r="3" fill="var(--c-accent)" />
+      <circle cx="33" cy="25" r="3" fill="var(--c-yellow)" />
+      <circle cx="100" cy="70" r="3" fill="var(--c-accent)" />
+      <circle cx="40" cy="100" r="5" fill="var(--c-accent-vivid)" />
+      <circle cx="110" cy="165" r="3.5" fill="var(--c-primary)" />
+      <circle cx="185" cy="10" r="3" fill="var(--c-yellow)" />
+      <!-- ride each ellipse's rim very slowly, at different speeds so they
+           don't move in sync — everything else stays still -->
+      <circle cx="0" cy="0" r="4" fill="var(--c-yellow)" class="orbit-dot orbit-dot--a" />
+      <circle cx="0" cy="0" r="3.5" fill="var(--c-primary)" class="orbit-dot orbit-dot--b" />
     </svg>
   </div>
 </section>
@@ -69,11 +94,9 @@ const { heading, subheading, submitLabel, privacyPrefix, privacyLinkLabel, priva
   .newsletter__accent {
     justify-self: end;
     width: 100%;
-    max-width: 180px;
+    max-width: 200px;
     height: auto;
     color: var(--c-primary);
-    opacity: 0.35;
-    transform: rotate(-8deg);
   }
 
   .newsletter__subheading {
@@ -121,6 +144,23 @@ const { heading, subheading, submitLabel, privacyPrefix, privacyLinkLabel, priva
   @media (max-width: 560px) {
     .newsletter__form {
       flex-direction: column;
+    }
+  }
+
+  /* Only the two satellite dots move, each tracing its own ellipse — kept at
+     different durations so they drift out of phase with each other and with
+     CtaBanner's orbit-dot, instead of all pulsing in lockstep. */
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-dot--a {
+      offset-path: path('M35,185 A20,12 0 1 0 75,185 A20,12 0 1 0 35,185');
+      offset-distance: 0%;
+      animation: orbit-travel 38s linear infinite;
+    }
+
+    .orbit-dot--b {
+      offset-path: path('M132,155 A18,10 0 1 0 168,155 A18,10 0 1 0 132,155');
+      offset-distance: 0%;
+      animation: orbit-travel 46s linear infinite reverse;
     }
   }
 </style>
