@@ -15,6 +15,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/montserrat": "^5.3.0",
     "@fontsource/mulish": "^5.3.0",
     "@keystatic/astro": "^5.2.0",
