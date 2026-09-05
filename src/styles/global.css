@@ -193,6 +193,18 @@ img {
   margin-bottom: var(--space-3);
 }
 
+/* Small yellow marker so the color has a quiet through-line before its one
+   large appearance in the footer — otherwise it reads as an orphaned token. */
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  background: var(--c-yellow);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
