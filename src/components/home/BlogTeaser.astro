@@ -27,13 +27,15 @@ const { heading, intro, buttonLabel, buttonHref, posts } = Astro.props;
     </header>
 
     <div class="blog-teaser__grid">
-      {posts.map((post) => (
+      {posts.map((post, i) => (
         <PostCard
           slug={post.slug}
           title={post.title}
           image={post.featuredImage}
           imageAlt={post.featuredImageAlt}
           linkLabel="Więcej →"
+          headingLevel={i === 0 ? 'h2' : 'h3'}
+          featured={i === 0}
         />
       ))}
     </div>
@@ -50,10 +52,17 @@ const { heading, intro, buttonLabel, buttonHref, posts } = Astro.props;
     margin-bottom: var(--space-12);
   }
 
+  /* Newest post (first) is featured larger, spanning both rows of a narrower
+     2-up column — an editorial split instead of a uniform 3-card row. */
   .blog-teaser__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, auto);
     gap: var(--space-8);
+  }
+
+  .blog-teaser__grid > :global(a:first-child) {
+    grid-row: 1 / span 2;
   }
 
   .blog-teaser__cta {
@@ -64,6 +73,10 @@ const { heading, intro, buttonLabel, buttonHref, posts } = Astro.props;
   @media (max-width: 860px) {
     .blog-teaser__grid {
       grid-template-columns: 1fr;
+    }
+
+    .blog-teaser__grid > :global(a:first-child) {
+      grid-row: auto;
     }
   }
 </style>

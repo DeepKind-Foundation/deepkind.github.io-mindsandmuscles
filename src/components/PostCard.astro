@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   headingLevel?: 'h2' | 'h3';
   background?: 'white' | 'surface';
+  featured?: boolean;
 }
 
 const {
@@ -21,11 +22,15 @@ const {
   description,
   headingLevel = 'h3',
   background = 'white',
+  featured = false,
 } = Astro.props;
 const Heading = headingLevel;
 ---
 
-<a href={`/${slug}/`} class:list={['post-card', `post-card--${background}`]}>
+<a
+  href={`/${slug}/`}
+  class:list={['post-card', `post-card--${background}`, featured && 'post-card--featured']}
+>
   <img src={image} alt={imageAlt} width="300" height="169" loading="lazy" />
   <div class="post-card__body">
     {category && <span class="eyebrow">{category}</span>}
@@ -42,6 +47,7 @@ const Heading = headingLevel;
     color: inherit;
     border-radius: var(--radius);
     overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
   }
 
   .post-card--white {
@@ -58,6 +64,29 @@ const Heading = headingLevel;
     object-fit: cover;
   }
 
+  /* Full-bleed card link needs its own hover confirmation — nothing else on
+     the card signals interactivity otherwise. */
+  @media (prefers-reduced-motion: no-preference) {
+    .post-card {
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .post-card img {
+      transition: transform 0.3s ease;
+    }
+
+    .post-card:hover,
+    .post-card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -12px color-mix(in srgb, var(--c-ink) 30%, transparent);
+    }
+
+    .post-card:hover img,
+    .post-card:focus-visible img {
+      transform: scale(1.04);
+    }
+  }
+
   .post-card__body {
     padding: var(--space-6);
   }
@@ -66,6 +95,15 @@ const Heading = headingLevel;
   .post-card__body h3 {
     font-size: 1.15rem;
     margin: var(--space-2) 0 var(--space-3);
+  }
+
+  .post-card--featured img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .post-card--featured .post-card__body h2,
+  .post-card--featured .post-card__body h3 {
+    font-size: 1.5rem;
   }
 
   .post-card__body p {

@@ -10,23 +10,42 @@ const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
 ---
 
 <section class="cta-banner section">
-  <div class="container cta-banner__inner">
-    <span class="eyebrow">{eyebrow}</span>
-    <h2>{heading}</h2>
-    <a href={buttonHref} class="button button--primary" target="_blank" rel="noopener noreferrer">
-      {buttonLabel}
-    </a>
+  <div class="container cta-banner__grid">
+    <div class="cta-banner__content">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2>{heading}</h2>
+      <a href={buttonHref} class="button button--primary" target="_blank" rel="noopener noreferrer">
+        {buttonLabel}
+      </a>
+    </div>
+    <!-- Single-path decorative accent, inlined (not a standalone .svg file) so it can
+         pick up --c-accent via currentColor across this section's dark background. -->
+    <svg class="cta-banner__accent" viewBox="0 0 200 320" fill="none" aria-hidden="true" role="presentation">
+      <path
+        d="M20 10C70 60 10 110 60 160C110 210 40 260 90 310"
+        stroke="currentColor"
+        stroke-width="10"
+        stroke-linecap="round"
+      />
+    </svg>
   </div>
 </section>
 
 <style>
   .cta-banner {
     background: var(--c-ink);
+    overflow: hidden;
   }
 
-  .cta-banner__inner {
-    text-align: center;
-    max-width: 620px;
+  .cta-banner__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .cta-banner__content {
+    max-width: 480px;
   }
 
   .cta-banner .eyebrow {
@@ -39,5 +58,30 @@ const { eyebrow, heading, buttonLabel, buttonHref } = Astro.props;
 
   .cta-banner .button {
     margin-top: var(--space-6);
+  }
+
+  .cta-banner__accent {
+    justify-self: end;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    color: var(--c-accent);
+    opacity: 0.5;
+    transform: rotate(6deg);
+  }
+
+  @media (max-width: 720px) {
+    .cta-banner__grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .cta-banner__content {
+      max-width: none;
+    }
+
+    .cta-banner__accent {
+      display: none;
+    }
   }
 </style>
