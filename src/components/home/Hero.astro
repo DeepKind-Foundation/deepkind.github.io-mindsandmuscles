@@ -22,13 +22,22 @@ const {
   illustration,
   illustrationAlt,
 } = Astro.props;
+
+const headingLines = heading.split('\n');
 ---
 
 <section id="home" class="hero section">
   <div class="container hero__grid">
     <div class="hero__heading">
       <span class="eyebrow">{eyebrow}</span>
-      <h1>{heading}</h1>
+      <h1>
+        {headingLines.map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            {line}
+          </>
+        ))}
+      </h1>
     </div>
     <div class="hero__lower">
       <p class="hero__body">{body}</p>
@@ -44,7 +53,7 @@ const {
       src={illustration}
       alt={illustrationAlt}
       width="1200"
-      height="481"
+      height="351"
       loading="eager"
       fetchpriority="high"
     />
@@ -61,7 +70,7 @@ const {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-      'heading heading .'
+      'heading heading heading'
       'lower illustration illustration';
     column-gap: var(--space-12);
     row-gap: var(--space-6);
@@ -77,15 +86,17 @@ const {
     grid-area: lower;
     position: relative;
     z-index: 2;
-    align-self: end;
+    align-self: start;
   }
 
   .hero__illustration {
     grid-area: illustration;
     display: block;
-    width: 100%;
+    width: 90%;
     height: auto;
+    margin-inline-start: auto;
     align-self: end;
+    opacity: 0.55;
     transform: rotate(-3deg);
   }
 
